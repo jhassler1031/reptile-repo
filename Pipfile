@@ -11,6 +11,7 @@ djoser = "*"
 django-heroku = "*"
 gunicorn = "*"
 requests = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

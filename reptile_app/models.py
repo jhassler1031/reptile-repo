@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 import requests
+from django.conf import settings
+GOOGLE_API_KEY = settings.GOOGLE_API_KEY
 
-google_api_key = "AIzaSyDt8GbNukHtkl6hNn5eqJCLmrVijwDlkC4"
 geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
 # def find_latlong(raw_address, city, state, zip_code):
@@ -18,8 +19,6 @@ geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 #         address_data = resp.json()
 #         latlong = address_data["results"][0]["geometry"]["location"]
 #         return latlong
-#     else:
-#         print("ERROR: " + str(resp.status_code))
 
 
 # Create your models here.
