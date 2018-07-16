@@ -1,0 +1,7 @@
+pipenv
+django
+Djangorestframework
+djoser
+django-heroku
+gunicorn
+psycopg2-binary 

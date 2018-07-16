@@ -1,0 +1,6 @@
+.direnv/
+__pycache__/
+
+*.pyc
+db.sqlite3
+Pipfile.local
