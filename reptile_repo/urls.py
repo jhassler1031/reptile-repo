@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroy, \
-                            StoreListCreateAPIView, StoreRetrieveUpdateDestroy, \
-                            IllnessListCreateAPIView, IllnessRetrieveUpdateDestroy
+from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroyAPIView, \
+                            StoreListCreateAPIView, StoreRetrieveUpdateDestroyAPIView, \
+                            IllnessListCreateAPIView, IllnessRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,9 +26,9 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('vets/', VetListCreateAPIView.as_view()),
-    path('vets/<int:pk>', VetRetrieveUpdateDestroy.as_view()),
+    path('vets/<int:pk>', VetRetrieveUpdateDestroyAPIView.as_view()),
     path('stores/', StoreListCreateAPIView.as_view()),
-    path('stores/<int:pk>', StoreRetrieveUpdateDestroy.as_view()),
+    path('stores/<int:pk>', StoreRetrieveUpdateDestroyAPIView.as_view()),
     path('illnesses/', IllnessListCreateAPIView.as_view()),
-    path('illnesses/<int:pk>', IllnessRetrieveUpdateDestroy.as_view()),
+    path('illnesses/<int:pk>', IllnessRetrieveUpdateDestroyAPIView.as_view()),
 ]

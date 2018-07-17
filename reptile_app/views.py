@@ -26,7 +26,7 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
 
-class VetRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class VetRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Vet.objects.all()
     serializer_class = VetSerializer
     permission_classes = [IsOwnerOrReadOnly]
@@ -43,14 +43,14 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
 
-class StoreRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
 # Illness Views ================================================================
 class IllnessListCreateAPIView(generics.ListCreateAPIView):
-    serializer_class = StoreSerializer
+    serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
@@ -60,7 +60,7 @@ class IllnessListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
 
-class IllnessRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class IllnessRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Illness.objects.all()
     serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
