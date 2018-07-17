@@ -59,6 +59,9 @@ class Vet(models.Model):
         else:
             return "unable to process latlong"
 
+    def __str__(self):
+        return self.vet_name
+
 # Create the Store Model for local stores ======================================
 class Store(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
@@ -77,6 +80,9 @@ class Store(models.Model):
 
     # Also need to find the latlong on this
 
+    def __str__(self):
+        return self.store_name
+
 # Create the Illness Model =====================================================
 class Illness(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
@@ -87,3 +93,6 @@ class Illness(models.Model):
 
     # Need to determine best way to create this
     species_affected = []
+
+    def __str__(self):
+        return self.illness_name
