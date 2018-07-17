@@ -131,8 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "static/reptile_app/build/static"),
     os.path.join(BASE_DIR, "static/reptile_app/build"),
+    os.path.join(BASE_DIR, "static/reptile_app/build/static"),
 ]
 
 AUTH_USER_MODEL = 'reptile_app.User'
