@@ -59,7 +59,7 @@ class Vet(models.Model):
         else:
             return "unable to process latlong"
 
-# Create the Store class for local stores ======================================
+# Create the Store Model for local stores ======================================
 class Store(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
@@ -76,3 +76,14 @@ class Store(models.Model):
     ratings = []
 
     # Also need to find the latlong on this
+
+# Create the Illness Model =====================================================
+class Illness(models.Model):
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    created = models.DateTimeField(auto_now_add=True)
+    illness_name = models.CharField(max_length=255)
+    symptoms = models.TextField()
+    description = models.TextField()
+
+    # Need to determine best way to create this
+    species_affected = []

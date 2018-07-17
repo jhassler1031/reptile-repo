@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 
-from reptile_app.models import Vet, Store
-from reptile_app.serializers import VetSerializer, StoreSerializer
+from reptile_app.models import Vet, Store, Illness
+from reptile_app.serializers import VetSerializer, StoreSerializer, IllnessSerializer
 from reptile_app.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
@@ -46,4 +46,21 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
 class StoreRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+# Illness Views ================================================================
+class IllnessListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = StoreSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+    def get_queryset(self):
+        queryset = Illness.objects.all()
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(author = self.request.user)
+
+class IllnessRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Illness.objects.all()
+    serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]

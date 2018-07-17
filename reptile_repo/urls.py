@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroy, \
-                            StoreListCreateAPIView, StoreRetrieveUpdateDestroy
+                            StoreListCreateAPIView, StoreRetrieveUpdateDestroy, \
+                            IllnessListCreateAPIView, IllnessRetrieveUpdateDestroy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,6 @@ urlpatterns = [
     path('vets/<int:pk>', VetRetrieveUpdateDestroy.as_view()),
     path('stores/', StoreListCreateAPIView.as_view()),
     path('stores/<int:pk>', StoreRetrieveUpdateDestroy.as_view()),
+    path('illnesses/', IllnessListCreateAPIView.as_view()),
+    path('illnesses/<int:pk>', IllnessRetrieveUpdateDestroy.as_view()),
 ]

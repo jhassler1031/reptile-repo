@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
-from reptile_app.models import Vet, Store
+from reptile_app.models import Vet, Store, Illness
 
 # Create Serializers Here
 
@@ -18,5 +18,13 @@ class StoreSerializer(ModelSerializer):
 
     class Meta:
         model = Store
+        fields = "__all__"
+        read_only_fields = ["author", "created"]
+
+# Illness Serializer ===========================================================
+class IllnessSerializer(ModelSerializer):
+
+    class Meta:
+        model = Illness
         fields = "__all__"
         read_only_fields = ["author", "created"]
