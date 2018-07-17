@@ -18,7 +18,8 @@ from django.urls import path, include
 
 from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroyAPIView, \
                             StoreListCreateAPIView, StoreRetrieveUpdateDestroyAPIView, \
-                            IllnessListCreateAPIView, IllnessRetrieveUpdateDestroyAPIView
+                            IllnessListCreateAPIView, IllnessRetrieveUpdateDestroyAPIView, \
+                            MessageListCreateAPIView, MessageRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +32,6 @@ urlpatterns = [
     path('stores/<int:pk>', StoreRetrieveUpdateDestroyAPIView.as_view()),
     path('illnesses/', IllnessListCreateAPIView.as_view()),
     path('illnesses/<int:pk>', IllnessRetrieveUpdateDestroyAPIView.as_view()),
+    path('messages/', MessageListCreateAPIView.as_view()),
+    path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view()),
 ]

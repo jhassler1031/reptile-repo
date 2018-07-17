@@ -5,8 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 
-from reptile_app.models import Vet, Store, Illness
-from reptile_app.serializers import VetSerializer, StoreSerializer, IllnessSerializer
+from reptile_app.models import Vet, Store, Illness, Message
+from reptile_app.serializers import VetSerializer, StoreSerializer, IllnessSerializer, \
+                                MessageSerializer
 from reptile_app.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
@@ -64,3 +65,16 @@ class IllnessRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     queryset = Illness.objects.all()
     serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+# Contact Views ================================================================
+# May not actually use this endpoint and only access through admin but add just in case
+class MessageListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        queryset = Message.objects.all()
+        return queryset
+
+class MessageRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer

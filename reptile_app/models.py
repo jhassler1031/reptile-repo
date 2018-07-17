@@ -96,3 +96,16 @@ class Illness(models.Model):
 
     def __str__(self):
         return self.illness_name
+
+# Create Message Model =========================================================
+# This model is meant to be in place of having people email me directly from the site.
+# Instead they post to this table and I can review from the admin page.
+class Message(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    contact_name = models.CharField(max_length=50)
+    contact_email = models.CharField(max_length=255, null=True)
+    contact_phone = models.CharField(max_length=25, null=True)
+    message_text = models.TextField()
+
+    def __str__(self):
+        return f"Message {self.id} from {self.contact_name}"
