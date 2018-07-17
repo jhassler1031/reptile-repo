@@ -4,11 +4,30 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+import requests
 
 from reptile_app.models import Vet, Store, Illness, Message
 from reptile_app.serializers import VetSerializer, StoreSerializer, IllnessSerializer, \
                                 MessageSerializer
 from reptile_app.permissions import IsOwnerOrReadOnly
+
+#Importing Google API key and setting geocode URL variable
+from django.conf import settings
+GOOGLE_API_KEY = settings.GOOGLE_API_KEY
+geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
+
+# Funtion to use Geocode API to retrieve lat/long info =========================
+def find_latlong(obj):
+    temp_address = (obj.request.data["raw_address"] + " " + obj.request.data["city"] + " " + obj.request.data["state"] + " " + obj.request.data["zip_code"]).split(" ")
+    temp_address = "+".join(temp_address)
+
+    address_url = f"{geocode_url}?address={temp_address}=&key={GOOGLE_API_KEY}"
+    resp = requests.get(address_url)
+
+    if resp.status_code in [200, 201]:
+        address_data = resp.json()
+        return address_data["results"][0]["geometry"]["location"]
+
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -25,7 +44,8 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author = self.request.user)
+        latlong = find_latlong(self)
+        serializer.save(author = self.request.user, lat = latlong["lat"], long = latlong["lng"])
 
 class VetRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Vet.objects.all()

@@ -16,8 +16,9 @@ Python
 Django
 Django Rest Framework
 Djoser
+Requests 
 React
 
 APIs Used:
 Google Maps Javascript API
-Google Maps Geocodes API 
+Google Maps Geocodes API
