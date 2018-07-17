@@ -62,7 +62,8 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author = self.request.user)
+        latlong = find_latlong(self)
+        serializer.save(author = self.request.user, lat = latlong["lat"], long = latlong["lng"])
 
 class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Store.objects.all()

@@ -28,7 +28,7 @@ class Vet(models.Model):
     emergency_services = models.NullBooleanField()
     boarding_services = models.NullBooleanField()
     notes = models.TextField(null=True)
-    
+
     # Being set by perform_create in VetListCreateAPIView
     lat = models.FloatField(null=True)
     long = models.FloatField(null=True)
@@ -44,7 +44,7 @@ class Store(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     store_name = models.CharField(max_length=255)
     raw_address = models.CharField(max_length=255)
-    raw_address2 = models.CharField(max_length=100)
+    raw_address2 = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
     zip_code = models.CharField(max_length=5)
@@ -52,9 +52,11 @@ class Store(models.Model):
     website = models.CharField(max_length=255, null=True)
     notes = models.TextField(null=True)
 
-    ratings = []
+    # Being set by perform_create in StoreListCreateAPIView
+    lat = models.FloatField(null=True)
+    long = models.FloatField(null=True)
 
-    # Also need to find the latlong on this
+    ratings = []
 
     def __str__(self):
         return self.store_name
