@@ -63,7 +63,9 @@ ROOT_URLCONF = 'reptile_repo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'static/reptile_app/build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static/reptile_app/build/static"),
+    os.path.join(BASE_DIR, "static/reptile_app/build"),
 ]
 
 AUTH_USER_MODEL = 'reptile_app.User'

@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>{baseURL}</p>
+        <h1>TESTING REACT</h1>
       </div>
     );
   }
