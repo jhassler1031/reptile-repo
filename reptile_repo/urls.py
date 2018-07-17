@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from reptile_app.views import VetListCreateAPIView, VetRetrieveUpdateDestroy
+from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroy, \
+                            StoreListCreateAPIView, StoreRetrieveUpdateDestroy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', IndexView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('vets/', VetListCreateAPIView.as_view()),
     path('vets/<int:pk>', VetRetrieveUpdateDestroy.as_view()),
+    path('stores/', StoreListCreateAPIView.as_view()),
+    path('stores/<int:pk>', StoreRetrieveUpdateDestroy.as_view()),
 ]

@@ -25,13 +25,14 @@ geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 class User(AbstractUser):
     pass
 
+# Creates the Vet class ========================================================
 class Vet(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     vet_name = models.CharField(max_length=255)
     # Testing creating address
     raw_address = models.CharField(max_length=255)
-    raw_address2 = models.CharField(max_length=100)
+    raw_address2 = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
     zip_code = models.CharField(max_length=5)
@@ -57,3 +58,21 @@ class Vet(models.Model):
             return latlong
         else:
             return "unable to process latlong"
+
+# Create the Store class for local stores ======================================
+class Store(models.Model):
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    created = models.DateTimeField(auto_now_add=True)
+    store_name = models.CharField(max_length=255)
+    raw_address = models.CharField(max_length=255)
+    raw_address2 = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=2)
+    zip_code = models.CharField(max_length=5)
+    phone = models.CharField(max_length=20, null=True)
+    website = models.CharField(max_length=255, null=True)
+    notes = models.TextField(null=True)
+
+    ratings = []
+
+    # Also need to find the latlong on this
