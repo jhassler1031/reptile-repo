@@ -16,8 +16,12 @@ Python
 Django
 Django Rest Framework
 Djoser
-Requests 
+Requests
 React
+React-router-dom
+Bootstrap
+JQuery
+Popper.js
 
 APIs Used:
 Google Maps Javascript API
