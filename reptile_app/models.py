@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
+# Basic user model that connects into Djoser 
 class User(AbstractUser):
     pass
 

@@ -18,19 +18,23 @@ geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
 # Funtion to use Geocode API to retrieve lat/long info =========================
 def find_latlong(obj):
+    # Takes the address items and puts them into a single URL for use with Google Geocodes API
     temp_address = (obj.request.data["raw_address"] + " " + obj.request.data["city"] + " " + obj.request.data["state"] + " " + obj.request.data["zip_code"]).split(" ")
     temp_address = "+".join(temp_address)
 
-    # Using settings.GOOGLE_API_KEY to access the key set in settings.py 
+    # Using settings.GOOGLE_API_KEY to access the key set in settings.py
     address_url = f"{geocode_url}?address={temp_address}=&key={settings.GOOGLE_API_KEY}"
-    resp = requests.get(address_url)
 
+    # Connect to the Geocodes API and return the portion of the data that gives the Latitude
+    # and Longitude of the address.
+    resp = requests.get(address_url)
     if resp.status_code in [200, 201]:
         address_data = resp.json()
         return address_data["results"][0]["geometry"]["location"]
 
 
 # Create your views here.
+# Basic index view for connecting to index.html
 class IndexView(TemplateView):
     template_name = "index.html"
 
@@ -40,11 +44,15 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
+        # Need to add search functionality here.  Frontend should pass search latlong,
+        # which should then be used as a search to return all objects within a certain
+        # radius of the search and return those to the frontend for display
         queryset = Vet.objects.all()
 
         return queryset
 
     def perform_create(self, serializer):
+        # Call the function to set the lat and long variables of the object
         latlong = find_latlong(self)
         serializer.save(author = self.request.user, lat = latlong["lat"], long = latlong["lng"])
 
@@ -59,10 +67,12 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
+        # Need some search functionality here as in Vets
         queryset = Store.objects.all()
         return queryset
 
     def perform_create(self, serializer):
+        # Function to set lat/long variables
         latlong = find_latlong(self)
         serializer.save(author = self.request.user, lat = latlong["lat"], long = latlong["lng"])
 
@@ -77,6 +87,7 @@ class IllnessListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
+        # Search functionality here 
         queryset = Illness.objects.all()
         return queryset
 

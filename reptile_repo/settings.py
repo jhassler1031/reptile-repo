@@ -61,6 +61,9 @@ ROOT_URLCONF = 'reptile_repo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # The DIRS section is telling Django to look for templates in the speicified
+        # folder (which is in React) rather than the default template folder inside
+        # the Django app folder.
         'DIRS': [
             os.path.join(BASE_DIR, 'static/reptile_app/build')
         ],
@@ -127,22 +130,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# Adds the React folders to the staticfiles DIRS
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "static/reptile_app/build"),
     os.path.join(BASE_DIR, "static/reptile_app/build/static"),
 ]
 
+# Adds the media folder for use with file uploads
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# Tells auth to be applied to this user model
 AUTH_USER_MODEL = 'reptile_app.User'
-
+# Part of Djoser authentication
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
+# Import Heroku options needed for deployment
 import django_heroku
 django_heroku.settings(locals())
