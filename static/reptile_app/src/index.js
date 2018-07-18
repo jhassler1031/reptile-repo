@@ -12,6 +12,7 @@ import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import BaseLayout from './components/BaseLayout/BaseLayout.js';
 import Vets from './components/vets/Vets.js';
 import Stores from './components/stores/Stores.js';
+import Illnesses from './components/illnesses/Illnesses.js';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Switch>
         <Route path='/vets' component={Vets}/>
         <Route path='/stores' component={Stores}/>
+        <Route path='/illnesses' component={Illnesses}/>
         <Route path='/' component={App}/>
       </Switch>
     </BaseLayout>
