@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# import requests
-# from django.conf import settings
-# GOOGLE_API_KEY = settings.GOOGLE_API_KEY
-#
-# geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
-
 
 # Create your models here.
 class User(AbstractUser):
@@ -17,7 +11,6 @@ class Vet(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     vet_name = models.CharField(max_length=255)
-    # Testing creating address
     raw_address = models.CharField(max_length=255)
     raw_address2 = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=50)
