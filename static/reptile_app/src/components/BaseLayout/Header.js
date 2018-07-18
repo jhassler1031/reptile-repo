@@ -9,6 +9,7 @@ function Header(props) {
       <nav className="col headerNAV">
         <button><NavLink to='/'>Home</NavLink></button>
         <button><NavLink to='/vets'>Vets</NavLink></button>
+        <button><NavLink to='/stores'>Local Pet Stores</NavLink></button>
         {/* NAV Links here */}
       </nav>
 

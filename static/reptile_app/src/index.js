@@ -11,12 +11,14 @@ import {BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import BaseLayout from './components/BaseLayout/BaseLayout.js';
 import Vets from './components/vets/Vets.js';
+import Stores from './components/stores/Stores.js';
 
 ReactDOM.render(
   <BrowserRouter>
     <BaseLayout>
       <Switch>
         <Route path='/vets' component={Vets}/>
+        <Route path='/stores' component={Stores}/>
         <Route path='/' component={App}/>
       </Switch>
     </BaseLayout>
