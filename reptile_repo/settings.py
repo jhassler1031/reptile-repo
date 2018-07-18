@@ -133,6 +133,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/reptile_app/build/static"),
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 AUTH_USER_MODEL = 'reptile_app.User'
 
 REST_FRAMEWORK = {
