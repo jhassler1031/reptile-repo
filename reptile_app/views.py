@@ -13,7 +13,6 @@ from reptile_app.permissions import IsOwnerOrReadOnly
 
 #Importing Google API key and setting geocode URL variable
 from django.conf import settings
-GOOGLE_API_KEY = settings.GOOGLE_API_KEY
 geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
 # Funtion to use Geocode API to retrieve lat/long info =========================
@@ -21,7 +20,7 @@ def find_latlong(obj):
     temp_address = (obj.request.data["raw_address"] + " " + obj.request.data["city"] + " " + obj.request.data["state"] + " " + obj.request.data["zip_code"]).split(" ")
     temp_address = "+".join(temp_address)
 
-    address_url = f"{geocode_url}?address={temp_address}=&key={GOOGLE_API_KEY}"
+    address_url = f"{geocode_url}?address={temp_address}=&key={settings.GOOGLE_API_KEY}"
     resp = requests.get(address_url)
 
     if resp.status_code in [200, 201]:

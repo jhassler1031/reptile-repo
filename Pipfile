@@ -1,6 +1,6 @@
 [[source]]
 url = "https://pypi.org/simple"
-verify_ssl = true
+verify_ssl = false
 name = "pypi"
 
 [packages]
@@ -8,10 +8,10 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 "psycopg2-binary" = "*"
-django-heroku = "*"
 gunicorn = "*"
 requests = "*"
 python-dotenv = "*"
+django-heroku = "*"
 
 [dev-packages]
 
