@@ -22,6 +22,7 @@ React-router-dom
 Bootstrap
 JQuery
 Popper.js
+django-filter 
 
 APIs Used:
 Google Maps Javascript API

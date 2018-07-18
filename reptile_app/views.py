@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from rest_framework import filters
 import requests
 
 from reptile_app.models import Vet, Store, Illness, Message
@@ -87,8 +88,11 @@ class IllnessListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
-        # Search functionality here 
+        # Search functionality here
         queryset = Illness.objects.all()
+        # query = self.request.query_params.get('illness_name', None)
+        # if query != None:
+
         return queryset
 
     def perform_create(self, serializer):
@@ -103,6 +107,8 @@ class IllnessRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 # May not actually use this endpoint and only access through admin but add just in case
 class MessageListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ("contact_name", "contact_email", "contact_phone")
 
     def get_queryset(self):
         queryset = Message.objects.all()

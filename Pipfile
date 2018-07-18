@@ -12,6 +12,7 @@ gunicorn = "*"
 requests = "*"
 python-dotenv = "*"
 django-heroku = "*"
+django-filter = "*"
 
 [dev-packages]
 
