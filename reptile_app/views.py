@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-# filters is part of django-filters used for creating search_filters in views 
+# filters is part of django-filters used for creating search_filters in views
 from rest_framework import filters
 import requests
 
@@ -48,9 +48,10 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     search_fields = ("store_name")
 
     def get_queryset(self):
-        # Need to add search functionality here.  Frontend should pass search latlong,
-        # which should then be used as a search to return all objects within a certain
-        # radius of the search and return those to the frontend for display
+        # Need to add search functionality here.  Frontend should pass address data
+        # as search params.  Backend will pass these to Google Geocodes to get latlong
+        # data.  Find the high/low on the latlong for search radius and then filter
+        # queryset on that. 
         queryset = Vet.objects.all()
 
         return queryset
