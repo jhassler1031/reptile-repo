@@ -86,6 +86,8 @@ class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class IllnessListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ("illness_name", "symptoms", "species_affected")
 
     def get_queryset(self):
         # Search functionality here
@@ -106,13 +108,10 @@ class IllnessRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 # Contact Views ================================================================
 # May not actually use this endpoint and only access through admin but add just in case
 class MessageListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Message.objects.all()
     serializer_class = MessageSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ("contact_name", "contact_email", "contact_phone")
-
-    def get_queryset(self):
-        queryset = Message.objects.all()
-        return queryset
 
 class MessageRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()

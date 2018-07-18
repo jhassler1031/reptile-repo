@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-# Basic user model that connects into Djoser 
+# Basic user model that connects into Djoser
 class User(AbstractUser):
     pass
 
@@ -65,8 +65,8 @@ class Illness(models.Model):
     symptoms = models.TextField()
     description = models.TextField()
 
-    # Need to determine best way to create this
-    species_affected = []
+    # Using a text field as this could affect multiple species 
+    species_affected = models.TextField()
 
     def __str__(self):
         return self.illness_name
