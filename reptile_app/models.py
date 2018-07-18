@@ -64,8 +64,7 @@ class Illness(models.Model):
     illness_name = models.CharField(max_length=255)
     symptoms = models.TextField()
     description = models.TextField()
-
-    # Using a text field as this could affect multiple species 
+    # Using a text field as this could affect multiple species
     species_affected = models.TextField()
 
     def __str__(self):

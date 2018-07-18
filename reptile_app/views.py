@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+# filters is part of django-filters used for creating search_filters in views 
 from rest_framework import filters
 import requests
 
@@ -43,6 +44,8 @@ class IndexView(TemplateView):
 class VetListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = VetSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ("store_name")
 
     def get_queryset(self):
         # Need to add search functionality here.  Frontend should pass search latlong,
@@ -66,6 +69,8 @@ class VetRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class StoreListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = StoreSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ("store_name")
 
     def get_queryset(self):
         # Need some search functionality here as in Vets
@@ -84,18 +89,11 @@ class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 # Illness Views ================================================================
 class IllnessListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Illness.objects.all()
     serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
     filter_backends = (filters.SearchFilter,)
     search_fields = ("illness_name", "symptoms", "species_affected")
-
-    def get_queryset(self):
-        # Search functionality here
-        queryset = Illness.objects.all()
-        # query = self.request.query_params.get('illness_name', None)
-        # if query != None:
-
-        return queryset
 
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
