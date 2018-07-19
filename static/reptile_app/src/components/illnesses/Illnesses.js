@@ -15,7 +15,8 @@ class Illnesses extends Component {
     super(props);
 
     this.state = {
-      searchResults: []
+      searchResults: [],
+      message: ''
     }
 
     this._search = this._search.bind(this);
@@ -35,8 +36,13 @@ class Illnesses extends Component {
       return response.json()
     })
     .then(responseAsJson => {
-      console.log(responseAsJson);
-      self.setState({searchResults: responseAsJson});
+      if (responseAsJson.length > 0) {
+        console.log(responseAsJson);
+        self.setState({searchResults: responseAsJson, message: ''});
+      }
+      else {
+        self.setState({searchResults: [], message: 'Sorry, no search results found.'});
+      }
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);
@@ -45,21 +51,21 @@ class Illnesses extends Component {
 
   render() {
     let self = this;
-    
-    // Iterate over the search results and create a display object for each
+      // Iterate over the search results and create a display object for each
     let $illnesses = this.state.searchResults.map((illness)=> {
       return (
         <Illness key={illness.id} illness={illness}/>
       );
     })
+
     return (
       <div className="illnessContainer container">
         <h1>This is the Illnesses section.</h1>
         <SearchForm search={this._search}/>
-        {$illnesses}
-
+        
         <div className="searchResults">
-
+          {/* If statement here to display either no search results message, or the search results */}
+          {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
         </div>
 
       </div>
