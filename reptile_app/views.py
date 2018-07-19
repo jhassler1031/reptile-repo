@@ -100,6 +100,7 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Store.objects.all()
+        # Filter the queryset by location params 
         return location_search(self, queryset)
 
     def perform_create(self, serializer):
