@@ -34,6 +34,23 @@ def find_latlong(obj):
         address_data = resp.json()
         return address_data["results"][0]["geometry"]["location"]
 
+def location_search(obj, queryset):
+    query = obj.request.query_params.get('data', None)
+    if query != None:
+        # Split the string of data by the separating commas, then assing to variables
+        query = query.split(",")
+        search_lat = float(query[0])
+        search_long = float(query[1])
+        search_radius = float(query[2])
+
+        lat_range = (search_lat - (search_radius / 49.0), search_lat + (search_radius / 49.0))
+        long_range = (search_long - (search_radius / 69.0), search_long + (search_radius / 69.0))
+
+        return queryset.filter(
+        lat__gte=lat_range[0], lat__lte=lat_range[1],
+        long__gte=long_range[0], long__lte=long_range[1]
+        )
+
 
 # Create your views here.
 # Basic index view for connecting to index.html
@@ -45,16 +62,35 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = VetSerializer
     permission_classes = [IsOwnerOrReadOnly]
     filter_backends = (filters.SearchFilter,)
+    # Search query comes from ?search=
     search_fields = ("store_name")
 
     def get_queryset(self):
         # Need to add search functionality here.  Frontend should pass address data
         # as search params.  Backend will pass these to Google Geocodes to get latlong
         # data.  Find the high/low on the latlong for search radius and then filter
-        # queryset on that. 
+        # queryset on that.
         queryset = Vet.objects.all()
+        # Query params should have lat, long, and radius in the form of
+        # ?data="lat","long","radius" coming from the frontend
+        # query = self.request.query_params.get('data', None)
+        # if query != None:
+        #     # Split the string of data by the separating commas, then assing to variables
+        #     query = query.split(",")
+        #     search_lat = float(query[0])
+        #     search_long = float(query[1])
+        #     search_radius = float(query[2])
+        #
+        #     lat_range = (search_lat - (search_radius / 49.0), search_lat + (search_radius / 49.0))
+        #     long_range = (search_long - (search_radius / 69.0), search_long + (search_radius / 69.0))
+        #
+        #     queryset = queryset.filter(
+        #     lat__gte=lat_range[0], lat__lte=lat_range[1],
+        #     long__gte=long_range[0], long__lte=long_range[1]
+        #     )
 
-        return queryset
+
+        return location_search(self, queryset)
 
     def perform_create(self, serializer):
         # Call the function to set the lat and long variables of the object
