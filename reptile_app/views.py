@@ -18,6 +18,8 @@ from django.conf import settings
 
 geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
+# Functions here ===============================================================
+
 # Funtion to use Geocode API to retrieve lat/long info =========================
 def find_latlong(obj):
     # Takes the address items and puts them into a single URL for use with Google Geocodes API
@@ -34,7 +36,9 @@ def find_latlong(obj):
         address_data = resp.json()
         return address_data["results"][0]["geometry"]["location"]
 
+# Function to take location search params and return the filtered queryset =====
 def location_search(obj, queryset):
+    # Query params should come in as ?data="lat","long","radius"
     query = obj.request.query_params.get('data', None)
     if query != None:
         # Split the string of data by the separating commas, then assing to variables
@@ -43,16 +47,23 @@ def location_search(obj, queryset):
         search_long = float(query[1])
         search_radius = float(query[2])
 
+        # Define the high and low end of the search radius by using a simplified version
+        # of the Haversine formula.  Removing the math for compensating for the curve of the
+        # earth as the search radius will be confined to a relatively small area
         lat_range = (search_lat - (search_radius / 49.0), search_lat + (search_radius / 49.0))
         long_range = (search_long - (search_radius / 69.0), search_long + (search_radius / 69.0))
 
+        # Cannot use <,> etc in the filter, has to be =.  Can use the built in functions
+        # of __lte and __gte to find if a value on the model is >=, <=, etc. is = whatever
+        # you're comparing it to.
         return queryset.filter(
         lat__gte=lat_range[0], lat__lte=lat_range[1],
         long__gte=long_range[0], long__lte=long_range[1]
         )
 
 
-# Create your views here.
+# Create your views here =======================================================
+
 # Basic index view for connecting to index.html
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -66,30 +77,8 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     search_fields = ("store_name")
 
     def get_queryset(self):
-        # Need to add search functionality here.  Frontend should pass address data
-        # as search params.  Backend will pass these to Google Geocodes to get latlong
-        # data.  Find the high/low on the latlong for search radius and then filter
-        # queryset on that.
         queryset = Vet.objects.all()
-        # Query params should have lat, long, and radius in the form of
-        # ?data="lat","long","radius" coming from the frontend
-        # query = self.request.query_params.get('data', None)
-        # if query != None:
-        #     # Split the string of data by the separating commas, then assing to variables
-        #     query = query.split(",")
-        #     search_lat = float(query[0])
-        #     search_long = float(query[1])
-        #     search_radius = float(query[2])
-        #
-        #     lat_range = (search_lat - (search_radius / 49.0), search_lat + (search_radius / 49.0))
-        #     long_range = (search_long - (search_radius / 69.0), search_long + (search_radius / 69.0))
-        #
-        #     queryset = queryset.filter(
-        #     lat__gte=lat_range[0], lat__lte=lat_range[1],
-        #     long__gte=long_range[0], long__lte=long_range[1]
-        #     )
-
-
+        # Run location_search to filter the queryset by the location
         return location_search(self, queryset)
 
     def perform_create(self, serializer):
@@ -110,9 +99,8 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
     search_fields = ("store_name")
 
     def get_queryset(self):
-        # Need some search functionality here as in Vets
         queryset = Store.objects.all()
-        return queryset
+        return location_search(self, queryset)
 
     def perform_create(self, serializer):
         # Function to set lat/long variables
