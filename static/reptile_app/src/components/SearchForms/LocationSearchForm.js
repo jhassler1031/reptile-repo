@@ -61,6 +61,7 @@ class LocationSearchForm extends Component {
     })
     .then(responseAsJson => {
       self.setState({latLong: responseAsJson["results"][0]["geometry"]["location"]});
+      // Call the callback function after the fetch completes.
       callback();
     })
     .catch((error)=>{
@@ -81,12 +82,12 @@ class LocationSearchForm extends Component {
     }
     self._getLatLong(content, callback)
 
+    // Using this callback so it waits on the fetch to complete in _getLatLong
     function callback() {
       latLong = self.state.latLong;
       let search = `${latLong['lat']},${latLong['lng']},${self.state.searchRadius}`
       self.setState({searchParams: search});
-      console.log(self.state.searchParams);
-      self.props.search(self.state.searchParams);
+      self.props.search(self.state.searchParams, self.state.latLong);
     }
   }
 

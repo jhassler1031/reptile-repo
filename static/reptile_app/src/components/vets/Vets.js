@@ -15,6 +15,7 @@ class Vets extends Component {
 
     this.state = {
       searchResults: [],
+      latLong: '',
       message: ''
     }
 
@@ -22,11 +23,13 @@ class Vets extends Component {
   }
 
   // This function is called by the search form, creates the url for the fetch,
-  // and then sets state to the data returned by the felch
-  _locationSearch(searchParams) {
+  // and then sets state to the data returned by the felch.
+  // This also receives latLong from the form in order to create the map.
+  _locationSearch(searchParams, latLong) {
     let self = this;
+    // State here needs latLong to display the map
+    self.setState({latLong: latLong});
     let searchURL = `${baseURL}/vets/?data=${searchParams}`;
-    // searchURL = "http://localhost:8000/stores/?data=34.9491893,-81.9210408,50";
 
     fetch(searchURL)
     .then(response => {
