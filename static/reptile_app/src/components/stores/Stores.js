@@ -44,7 +44,13 @@ class Stores extends Component {
       center: self.state.latLong,
       zoom: 10
     });
-    let startPosition = new google.maps.Marker({position: self.state.latLong, map:map});
+    let startPosition = new google.maps.Marker({position: self.state.latLong, map:map, title:'You are here'});
+    let markers = [];
+    for (var item in self.state.searchResults) {
+      var itemInfo = self.state.searchResults[item];
+      console.log(itemInfo.lat, itemInfo.long);
+      markers[item] = new google.maps.Marker({position: {lat: itemInfo.lat, lng: itemInfo.long}, map:map});
+    }
   }
 
   // This function is called by the search form, creates the url for the fetch,
@@ -67,6 +73,7 @@ class Stores extends Component {
       if (responseAsJson.length > 0) {
         console.log(responseAsJson);
         self.setState({searchResults: responseAsJson, message: ''});
+        self._loadJS();
       }
       else {
         self.setState({searchResults: [], message: 'Sorry, no search results found.', searchResults: []});
@@ -75,8 +82,6 @@ class Stores extends Component {
     .catch((error)=>{
       console.log("There was a problem: \n", error);
     });
-
-    self._loadJS();
   }
 
   render() {
