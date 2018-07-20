@@ -6,7 +6,7 @@ import './Vets.css';
 
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
-const baseURL = file.data;
+const baseURL = file.baseURL;
 
 
 class Vets extends Component {
@@ -41,7 +41,7 @@ class Vets extends Component {
         self.setState({searchResults: responseAsJson, message: ''});
       }
       else {
-        self.setState({searchResults: [], message: 'Sorry, no search results found.'});
+        self.setState({searchResults: [], message: 'Sorry, no search results found.', searchResults: []});
       }
     })
     .catch((error)=>{
