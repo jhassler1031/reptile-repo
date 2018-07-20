@@ -25,6 +25,7 @@ class Vets extends Component {
 
     this._locationSearch = this._locationSearch.bind(this);
     this._initMap = this._initMap.bind(this);
+    this._loadJS = this._loadJS.bind(this);
   }
 
   // Loads the script tag needed by google maps, then called the initMap function to create the map
@@ -37,7 +38,7 @@ class Vets extends Component {
     document.body.appendChild(script);
   }
 
-  // Function to create the map using the latLong provided by the search 
+  // Function to create the map using the latLong provided by the search
   _initMap() {
     let self = this;
     let map = new google.maps.Map(document.getElementById('map'), {
@@ -93,9 +94,9 @@ class Vets extends Component {
       <div className="vetsContainer container">
         <h1>This is the Vets section.</h1>
         <LocationSearchForm search={this._locationSearch}/>
-        {/* <div className="mapContainer"> */}
-          <div id="map"></div>
-        {/* </div> */}
+
+        <div id="map"></div>
+        
         <div className="searchResults">
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $vets : this.state.message}

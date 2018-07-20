@@ -1,3 +1,6 @@
 .storesContainer {
   height: 200px;
   background-color: yellow; }
+
+#map {
+  height: 400px; }
