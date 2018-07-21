@@ -40,11 +40,17 @@ class Vets extends Component {
 
   // Function to create the map using the latLong provided by the search
   _initMap() {
-    let self = this;
     let map = new google.maps.Map(document.getElementById('map'), {
-      center: self.state.latLong,
+      center: this.state.latLong,
       zoom: 10
     });
+    let markers = [];
+    markers[0] = new google.maps.Marker({position: this.state.latLong, map:map, title:'You are here'});
+    // Iterate over the list of results and create markers for each
+    for (var x = 0; x < this.state.searchResults.length; x++) {
+      var itemInfo = this.state.searchResults[x];
+      markers[x+1] = new google.maps.Marker({position: {lat: itemInfo.lat, lng: itemInfo.long}, map:map});
+    }
   }
 
   // This function is called by the search form, creates the url for the fetch,
@@ -68,6 +74,8 @@ class Vets extends Component {
       if (responseAsJson.length > 0) {
         console.log(responseAsJson);
         self.setState({searchResults: responseAsJson, message: ''});
+        // Function to load a JS script tag in the body needed by google maps
+        self._loadJS();
       }
       else {
         self.setState({searchResults: [], message: 'Sorry, no search results found.', searchResults: []});
@@ -76,9 +84,6 @@ class Vets extends Component {
     .catch((error)=>{
       console.log("There was a problem: \n", error);
     });
-
-    // Function to load a JS script tag in the body needed by google maps
-    self._loadJS();
   }
 
   render() {
@@ -96,7 +101,7 @@ class Vets extends Component {
         <LocationSearchForm search={this._locationSearch}/>
 
         <div id="map"></div>
-        
+
         <div className="searchResults">
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $vets : this.state.message}

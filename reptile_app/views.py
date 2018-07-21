@@ -60,6 +60,8 @@ def location_search(obj, queryset):
         lat__gte=lat_range[0], lat__lte=lat_range[1],
         long__gte=long_range[0], long__lte=long_range[1]
         )
+    else:
+        return queryset 
 
 
 # Create your views here =======================================================
@@ -100,7 +102,7 @@ class StoreListCreateAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Store.objects.all()
-        # Filter the queryset by location params 
+        # Filter the queryset by location params
         return location_search(self, queryset)
 
     def perform_create(self, serializer):

@@ -39,17 +39,17 @@ class Stores extends Component {
 
   // Function to create the map using the latLong provided by the search
   _initMap() {
-    let self = this;
     let map = new google.maps.Map(document.getElementById('map'), {
-      center: self.state.latLong,
+      center: this.state.latLong,
       zoom: 10
     });
-    let startPosition = new google.maps.Marker({position: self.state.latLong, map:map, title:'You are here'});
     let markers = [];
-    for (var item in self.state.searchResults) {
-      var itemInfo = self.state.searchResults[item];
-      console.log(itemInfo.lat, itemInfo.long);
-      markers[item] = new google.maps.Marker({position: {lat: itemInfo.lat, lng: itemInfo.long}, map:map});
+    markers[0] = new google.maps.Marker({position: this.state.latLong, map:map, title:'You are here'});
+
+    // Iterate over the list of results and create markers for each
+    for (var x = 0; x < this.state.searchResults.length; x++) {
+      var itemInfo = this.state.searchResults[x];
+      markers[x+1] = new google.maps.Marker({position: {lat: itemInfo.lat, lng: itemInfo.long}, map:map});
     }
   }
 
@@ -71,7 +71,6 @@ class Stores extends Component {
     })
     .then(responseAsJson => {
       if (responseAsJson.length > 0) {
-        console.log(responseAsJson);
         self.setState({searchResults: responseAsJson, message: ''});
         self._loadJS();
       }
