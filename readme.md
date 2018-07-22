@@ -24,6 +24,7 @@ JQuery
 Popper.js
 django-filter
 django-cors-headers
+model_mommy
 
 APIs Used:
 Google Maps Javascript API
