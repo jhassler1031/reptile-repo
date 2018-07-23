@@ -38,6 +38,6 @@ urlpatterns = [
     path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view(), name='message-detail'),
 ]
 
-# Makes files updated available for display 
+# Makes files updated available for display
 if settings.DEBUG is True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
