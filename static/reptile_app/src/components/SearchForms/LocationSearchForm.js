@@ -51,8 +51,8 @@ class LocationSearchForm extends Component {
   // Connect to Google Geocodes API and return the lat/long info
   _getLatLong(content, callback) {
     let self = this;
-    // console.log(GOOGLE_API_KEY);
     let url = geoCodeURL + '?address=' + content + '=&key=' + GOOGLE_API_KEY;
+    console.log("url: ",url);
 
     fetch(url)
     .then(response => {
@@ -62,6 +62,7 @@ class LocationSearchForm extends Component {
       return response.json();
     })
     .then(responseAsJson => {
+      console.log(responseAsJson);
       self.setState({latLong: responseAsJson["results"][0]["geometry"]["location"]});
       // Call the callback function after the fetch completes.
       callback();
@@ -82,6 +83,8 @@ class LocationSearchForm extends Component {
         content = content + this.state[item] + '+';
       }
     }
+    console.log("api key", GOOGLE_API_KEY);
+
     self._getLatLong(content, callback)
 
     // Using this callback so it waits on the fetch to complete in _getLatLong
