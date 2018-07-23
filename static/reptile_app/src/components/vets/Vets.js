@@ -106,9 +106,15 @@ class Vets extends Component {
 
         <LocationSearchForm search={this._locationSearch}/>
 
-        <div id="map"></div>
+        {this.state.searchResults.length > 0 ?
+        <div className="row justify-content-center">
+          <div id="map" className="col-11"></div>
+        </div>
+        :
+        <div></div>
+        }
 
-        <div className="searchResults">
+        <div className="searchResults row justify-content-center">
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $vets : this.state.message}
           {/* <script id="googleScript"></script> */}
