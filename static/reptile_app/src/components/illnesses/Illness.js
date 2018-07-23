@@ -9,11 +9,11 @@ class Illness extends Component {
 
   render() {
     return (
-      <div className="illnessDisplay">
-        <p>Illness Name: {this.props.illness.illness_name}</p>
+      <div className="col illnessDisplay">
+        <h1>{this.props.illness.illness_name}</h1>
         <p>Symptoms: {this.props.illness.symptoms}</p>
         <p>Species Affected: {this.props.illness.species_affected}</p>
-        <p>Description: {this.props.illness.description}</p>
+        <p>{this.props.illness.description}</p>
       </div>
     );
   }

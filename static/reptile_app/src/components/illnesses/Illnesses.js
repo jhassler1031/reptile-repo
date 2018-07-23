@@ -6,7 +6,7 @@ import './Illnesses.css';
 
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
-const baseURL = file.data;
+const baseURL = file.baseURL;
 
 
 
@@ -27,6 +27,7 @@ class Illnesses extends Component {
   _search(searchParams) {
     let self = this;
     let searchURL = `${baseURL}/illnesses/?search=${searchParams}`;
+    console.log(searchURL);
 
     fetch(searchURL)
     .then(response => {
@@ -69,7 +70,7 @@ class Illnesses extends Component {
 
         <SearchForm search={this._search}/>
 
-        <div className="searchResults">
+        <div className="searchResults row justify-content-center">
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
         </div>

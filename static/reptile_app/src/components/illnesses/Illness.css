@@ -1,2 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker");
 .illnessDisplay {
-  background-color: blue; }
+  color: #EBD79A;
+  background-color: #557599bb;
+  border: 2px solid #E86D67cc;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  line-height: 1rem; }
+
+.illnessDisplay h1 {
+  font-family: "Permanent Marker", helvetica, sans-serif;
+  font-size: 1.5rem;
+  text-decoration: underline; }
+
+.illnessDisplay p {
+  font-family: "Josefin Sans", helvetica, sans-serif; }
