@@ -1,4 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker');
+
 .headerRow {
   height: 100px;
-  background-color: lightgreen;
+  background-image: url(../Images/crombackground2.JPG);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #4E759C;
+}
+
+@media (max-width: 768px) {
+  .headerRow {
+    // Make the header thicker to account for the items aligning vertically
+    height: 150px;
+  }
+}
+
+.header-item {
+  text-align: center;
+}
+
+.header-title {
+  color: white;
+  font-family: 'Amatic SC', helvetica, sans-serif;
+  font-size: 4rem;
+  // text-decoration: underline;
+  border-bottom: 2px solid white;
+  white-space: nowrap;
+}
+
+#headerNAV {
+  // white-space: nowrap;
+}
+
+.navButton {
+background-color: transparent;
+}
+
+.navButton:not(:last-child) {
+  margin-right: 6px;
+}
+
+.navButton:hover {
+  background-color: #D36B69;
+}
+
+.navButton a {
+  font-family: 'Amatic SC', helvetica, sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+  padding: 10px 5px;
 }

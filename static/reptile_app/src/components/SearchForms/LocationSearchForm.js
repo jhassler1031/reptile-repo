@@ -7,7 +7,8 @@ import file from '../../utility.js';
 const geoCodeURL = file.geoCodeURL;
 
 let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
-let latLong;
+// let latLong;
+// const GOOGLE_API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`;
 
 class LocationSearchForm extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class LocationSearchForm extends Component {
   // Connect to Google Geocodes API and return the lat/long info
   _getLatLong(content, callback) {
     let self = this;
+    // console.log(GOOGLE_API_KEY);
     let url = geoCodeURL + '?address=' + content + '=&key=' + GOOGLE_API_KEY;
 
     fetch(url)
@@ -84,7 +86,7 @@ class LocationSearchForm extends Component {
 
     // Using this callback so it waits on the fetch to complete in _getLatLong
     function callback() {
-      latLong = self.state.latLong;
+      let latLong = self.state.latLong;
       let search = `${latLong['lat']},${latLong['lng']},${self.state.searchRadius}`
       self.setState({searchParams: search});
       self.props.search(self.state.searchParams, self.state.latLong);

@@ -5,18 +5,22 @@ import './Header.css';
 
 function Header(props) {
   return (
-    <div className="row headerRow">
-      <nav className="col headerNAV">
+    <div className="container-fluid">
+    <div className="row align-items-center headerRow">
+      <nav id="headerNAV" className="col-12 col-md-4 header-item">
         {/* NAV Links here */}
-        <button><NavLink to='/'>Home</NavLink></button>
-        <button><NavLink to='/vets'>Vets</NavLink></button>
-        <button><NavLink to='/stores'>Local Pet Stores</NavLink></button>
-        <button><NavLink to='/illnesses'>Illnesses</NavLink></button>
+        <button className="navButton"><NavLink to='/'>Home</NavLink></button>
+        <button className="navButton"><NavLink to='/vets'>Vets</NavLink></button>
+        <button className="navButton"><NavLink to='/stores'>Local Pet Stores</NavLink></button>
+        <button className="navButton"><NavLink to='/illnesses'>Illnesses</NavLink></button>
       </nav>
 
-      <div className="login">
+      <h1 className="col-12 col-md-4 header-item header-title">The Reptile Repo</h1>
 
+      <div className="col-12 col-md-4 login header-item">
+        <a href="#">Login</a>
       </div>
+    </div>
     </div>
   );
 }
