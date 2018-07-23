@@ -1,6 +1,39 @@
 .storesContainer {
-  height: 200px;
-  background-color: yellow; }
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%); }
+
+@media (max-width: 768px) {
+  .storesContainer {
+    top: 240px; } }
+
+.stores-title {
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #EED792;
+  background-color: #557599bb;
+  border-radius: 4px;
+  padding-top: 10px; }
+
+@media (max-width: 768px) {
+  .title-headline {
+    font-size: 1.4rem; } }
+
+@media (min-width: 768px) {
+  .stores-title-text {
+    font-size: 1.5rem; } }
+
+.title-headline {
+  font-weight: bold;
+  white-space: nowrap; }
+
+.stores-title-text {
+  text-align: center;
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  white-space: nowrap; }
 
 #map {
-  height: 400px; }
+  height: 400px;
+  width: 80%; }

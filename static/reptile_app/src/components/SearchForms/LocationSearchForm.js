@@ -97,35 +97,51 @@ class LocationSearchForm extends Component {
     return (
       <form onSubmit={(event)=>{event.preventDefault(),this._performSearch()}} className="locationSearchForm">
         <div className="locationSearchFormField">
-          {/* Address */}
-          <label htmlFor="searchAddress">Enter Address</label>
-          <input name="searchAddress" type="text" className="form-control" id="searchAddress" placeholder="Address" onChange={this._handleInput}/>
+          <div className="row">
+            {/* Address */}
+            <div className="col-12 col-md-8">
+              <label htmlFor="searchAddress">Enter Address</label>
+              <input name="searchAddress" type="text" className="form-control" id="searchAddress" placeholder="Address" onChange={this._handleInput}/>
+            </div>
 
-          {/* City */}
-          <label htmlFor="searchCity">Enter City</label>
-          <input name="searchCity" type="text" className="form-control" id="searchCity" placeholder="City" onChange={this._handleInput} required/>
+            {/* City */}
+            <div className="col-12 col-md-4">
+              <label htmlFor="searchCity">Enter City</label>
+              <input name="searchCity" type="text" className="form-control" id="searchCity" placeholder="City" onChange={this._handleInput} required/>
+            </div>
+          </div>
 
-          {/* State */}
-          <label htmlFor="searchState">State</label>
-          <input name="searchState" type="text" className="form-control" id="searchState" placeholder="State" onChange={this._handleInput} required/>
+          <div className="row">
+            <div className="col-12 col-md-4">
+              {/* State */}
+              <label htmlFor="searchState">State</label>
+              <input name="searchState" type="text" className="form-control" id="searchState" placeholder="State" onChange={this._handleInput} required/>
+            </div>
 
-          {/* Zip Code */}
-          <label htmlFor="searchZip">Zip Code</label>
-          <input name="searchZip" type="text" className="form-control" id="searchZip" placeholder="Zip Code" onChange={this._handleInput}/>
+            <div className="col-12 col-md-4">
+              {/* Zip Code */}
+              <label htmlFor="searchZip">Zip Code</label>
+              <input name="searchZip" type="text" className="form-control" id="searchZip" placeholder="Zip Code" onChange={this._handleInput}/>
+            </div>
 
-          {/* Radius */}
-          <label htmlFor="searchRadius">Choose a radius:</label>
-          <select id="searchRadius" name="searchRadius" onChange={this._handleInput} required>
-             <option value="">--Please choose an option--</option>
-             <option value="10">10</option>
-             <option value="25">25</option>
-             <option value="50">50</option>
-             <option value="75">75</option>
-             <option value="100">100</option>
-          </select>
+            <div className="col-12 col-md-4">
+              {/* Radius */}
+              <label htmlFor="searchRadius">Choose a radius:</label>
+              <select id="searchRadius" name="searchRadius" onChange={this._handleInput} required>
+                 <option value="">--Please choose an option--</option>
+                 <option value="10">10</option>
+                 <option value="25">25</option>
+                 <option value="50">50</option>
+                 <option value="75">75</option>
+                 <option value="100">100</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="row justify-content-end">
+            <button type="submit" className="col-2 btn btn-primary location-subtmit-button">Search</button>
+          </div>
         </div>
-
-          <button type="submit" className="btn btn-primary">Search</button>
       </form>
     );
   }

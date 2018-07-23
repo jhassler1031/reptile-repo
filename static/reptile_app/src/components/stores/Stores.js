@@ -94,7 +94,13 @@ class Stores extends Component {
 
     return (
       <div className="storesContainer container">
-        <h1>This is the Stores section.</h1>
+        <div className="stores-title">
+          <h1 className="title-headline">Local Pet Stores</h1>
+          <p className="stores-title-text">
+            Search for local pet stores that carry reptile related products.
+          </p>
+        </div>
+
         <LocationSearchForm search={this._locationSearch}/>
 
         <div id="map"></div>

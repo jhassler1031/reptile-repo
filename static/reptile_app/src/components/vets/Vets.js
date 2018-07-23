@@ -97,7 +97,13 @@ class Vets extends Component {
 
     return (
       <div className="vetsContainer container">
-        <h1>This is the Vets section.</h1>
+        <div className="vets-title">
+          <h1 className="title-headline">Local Reptile Friendly Veterinarians</h1>
+          <p className="vets-title-text">
+            Search for reptile friendly veterinarians near you.
+          </p>
+        </div>
+
         <LocationSearchForm search={this._locationSearch}/>
 
         <div id="map"></div>
@@ -111,5 +117,6 @@ class Vets extends Component {
     );
   }
 }
+
 
 export default Vets;
