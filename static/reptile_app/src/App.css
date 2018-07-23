@@ -2,7 +2,8 @@
 
 body {
   box-sizing: border-box;
-  background-image: url(./components/Images/crombackground2.JPG)
+  background: url("./components/Images/crombackground2.JPG") no-repeat fixed;
+  background-position: center top;
 }
 
 img {
@@ -11,4 +12,10 @@ img {
 
 .App {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-position: top;
+  }
 }

@@ -17,8 +17,8 @@ function Header(props) {
 
       <h1 className="col-12 col-md-4 header-item header-title">The Reptile Repo</h1>
 
-      <div className="col-12 col-md-4 login header-item">
-        <a href="#">Login</a>
+      <div id="headerLogin" className="col-12 col-md-4 login header-item">
+        <a href="#">Contributor Login</a>
       </div>
     </div>
     </div>

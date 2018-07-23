@@ -10,7 +10,9 @@
 
 @media (max-width: 768px) {
   .headerRow {
-    height: 150px; } }
+    height: 220px;
+    padding-bottom: 20px;
+    background-position: top; } }
 
 .header-item {
   text-align: center; }
@@ -23,7 +25,7 @@
   white-space: nowrap; }
 
 .navButton {
-  background-color: transparent; }
+  background-color: #52739388; }
 
 .navButton:not(:last-child) {
   margin-right: 6px; }
@@ -37,3 +39,23 @@
   text-decoration: none;
   color: white;
   padding: 10px 5px; }
+
+#headerLogin a {
+  font-family: 'Amatic SC', helvetica, sans-serif;
+  font-size: 1.5rem;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  background-color: #52739388; }
+
+#headerLogin a:hover {
+  background-color: #D36B69;
+  text-decoration: none;
+  color: white; }
+
+@media (max-width: 768px) {
+  #headerLogin a {
+    padding: 5px 10px;
+    font-size: 1.2rem; }
+  .navButton a {
+    font-size: 1.2rem; } }
