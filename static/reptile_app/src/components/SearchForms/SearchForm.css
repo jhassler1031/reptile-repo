@@ -1,2 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker");
 .searchForm {
-  background-color: orange; }
+  background-color: #557599bb;
+  color: #EED792;
+  position: relative;
+  padding: 15px; }
+
+.searchFormField {
+  font-family: "Josefin Sans", helvetica, sans-serif; }
+
+.searchFormField label {
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  font-size: 1.5rem;
+  margin-top: 10px; }
+
+.searchFormField input {
+  background-color: #FFFEED; }
+
+.submit-button {
+  margin-right: 15px;
+  margin-top: 15px;
+  background-color: lightblue;
+  border: 2px solid #557599;
+  color: #FFFEED; }
+
+.submit-button:hover {
+  background-color: #E06D68;
+  border: 2px solid white; }

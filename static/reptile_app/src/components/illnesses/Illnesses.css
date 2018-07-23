@@ -1,3 +1,35 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker");
 .illnessContainer {
-  height: 200px;
-  background-color: orange; }
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%); }
+
+@media (max-width: 768px) {
+  .illnessContainer {
+    top: 240px; } }
+
+.illnesses-title {
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #EED792;
+  background-color: #557599bb;
+  border-radius: 4px;
+  padding-top: 10px; }
+
+@media (max-width: 768px) {
+  .title-headline {
+    font-size: 1.4rem; } }
+
+@media (min-width: 768px) {
+  .illnesses-title-text {
+    font-size: 1.5rem; } }
+
+.title-headline {
+  font-weight: bold;
+  white-space: nowrap; }
+
+.illnesses-title-text {
+  text-align: center;
+  font-family: "Josefin Sans", helvetica, sans-serif; }

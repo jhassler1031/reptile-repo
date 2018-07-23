@@ -139,7 +139,7 @@ class LocationSearchForm extends Component {
           </div>
 
           <div className="row justify-content-end">
-            <button type="submit" className="col-2 btn btn-primary location-subtmit-button">Search</button>
+            <button type="submit" className="col-2 btn btn-primary location-submit-button">Search</button>
           </div>
         </div>
       </form>

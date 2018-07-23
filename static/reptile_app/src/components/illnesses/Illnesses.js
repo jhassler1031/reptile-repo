@@ -60,9 +60,15 @@ class Illnesses extends Component {
 
     return (
       <div className="illnessContainer container">
-        <h1>This is the Illnesses section.</h1>
+        <div className="illnesses-title">
+          <h1 className="title-headline">Reptile Related Illnesses</h1>
+          <p className="illnesses-title-text">
+            Search for reptile related illnesses by species, name, or symptoms.
+          </p>
+        </div>
+
         <SearchForm search={this._search}/>
-        
+
         <div className="searchResults">
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $illnesses : this.state.message}

@@ -17,19 +17,20 @@
   font-family: "Josefin Sans", helvetica, sans-serif;
   color: #6D757C;
   font-size: 1.2rem;
-  height: 35px;
-  background-color: #FFFEED; }
+  height: 38px;
+  background-color: #FFFEED;
+  width: 100%; }
 
 .locationSearchFormField input {
   background-color: #FFFEED; }
 
-.location-subtmit-button {
+.location-submit-button {
   margin-right: 15px;
   margin-top: 15px;
   background-color: lightblue;
   border: 2px solid #557599;
   color: #FFFEED; }
 
-.location-subtmit-button:hover {
+.location-submit-button:hover {
   background-color: #E06D68;
   border: 2px solid white; }
