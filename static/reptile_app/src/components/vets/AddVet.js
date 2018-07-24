@@ -10,17 +10,17 @@ class AddVet extends Component {
     super(props);
 
     this.state = {
-      vet_name: '',
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zip_code: '',
-      phone: '',
-      website: '',
+      vet_name: null,
+      address1: null,
+      address2: null,
+      city: null,
+      state: null,
+      zip_code: null,
+      phone: null,
+      website: null,
       emergency_services: false,
       boarding_services: false,
-      notes: '',
+      notes: null,
       image: null
     }
     this._handleInput = this._handleInput.bind(this);
@@ -72,23 +72,19 @@ class AddVet extends Component {
     let url = `${baseURL}/vets/`;
     let headerInfo = sessionStorage.getItem("token");
     let vetInfo = {
-      vet_name: this.state.vet_name,
-      raw_address: this.state.address1,
-      raw_address2: this.state.address2,
+      "vet_name": this.state.vet_name,
+      "raw_address": this.state.address1,
+      "raw_address2": this.state.address2,
       city: this.state.city,
       state: this.state.state,
-      zip_code: this.state.zip_code,
+      "zip_code": this.state.zip_code,
       phone: this.state.phone,
       website: this.state.website,
-      emergency_services: this.state.emergency_services,
-      boarding_services: this.state.boarding_services,
+      "emergency_services": this.state.emergency_services,
+      "boarding_services": this.state.boarding_services,
       notes: this.state.notes,
       image: this.state.image
     }
-
-    // console.log("url: ", url)
-    // console.log(typeof(headerInfo));
-    console.log(vetInfo);
 
     fetch(url, {
       method: "POST",

@@ -76,7 +76,7 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     filter_backends = (filters.SearchFilter,)
     # Search query comes from ?search=
-    search_fields = ("store_name")
+    search_fields = ("vet_name")
 
     def get_queryset(self):
         queryset = Vet.objects.all()
