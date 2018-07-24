@@ -42,10 +42,30 @@ class Header extends Component {
       password: this.state.password
     }
 
-    
+    fetch(loginURL, {
+      method: "POST",
+      body: JSON.stringify(loginInfo),
+      headers: {
+        'Content-Type': "application/json"
+      }
+    })
+    .then(response=>{
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(responseAsJson=> {
+      // Set local session storage item to {token: "token auth_token"}
+      // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
+      sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
+    })
+    .catch((error)=>{
+      console.log("There was a problem: \n", error);
+    });
+
     // Need to post the username/password to get an auth token and save to user's local storage
     this.setState({loggedIn: true});
-
   }
 
   render() {
