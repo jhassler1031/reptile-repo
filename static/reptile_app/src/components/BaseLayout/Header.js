@@ -4,17 +4,12 @@ import { NavLink } from 'react-router-dom';
 
 import './Header.css';
 
-// Import the utlitity file and set login/logout URLs
-import file from '../../utility.js';
-const loginURL = file.loginURL;
-const logoutURL = file.logoutURL
-
 class Header extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      // loggedIn: false,
       username: '',
       password: ''
     }
@@ -33,39 +28,11 @@ class Header extends Component {
     }
   }
 
-  _login() {
+  _login(event) {
+    event.preventDefault()
     // Toggles the modal off after submit
     $('#loginModal').modal('toggle')
-
-    let loginInfo = {
-      username: this.state.username,
-      password: this.state.password
-    }
-
-    fetch(loginURL, {
-      method: "POST",
-      body: JSON.stringify(loginInfo),
-      headers: {
-        'Content-Type': "application/json"
-      }
-    })
-    .then(response=>{
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response.json();
-    })
-    .then(responseAsJson=> {
-      // Set local session storage item to {token: "token auth_token"}
-      // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
-      sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
-    })
-    .catch((error)=>{
-      console.log("There was a problem: \n", error);
-    });
-
-    // Need to post the username/password to get an auth token and save to user's local storage
-    this.setState({loggedIn: true});
+    this.props.authenticate(this.state.username, this.state.password);
   }
 
   render() {
@@ -82,13 +49,13 @@ class Header extends Component {
 
           <h1 className="col-12 col-md-4 header-item header-title">The Reptile Repo</h1>
 
+          {/* Button to bring up login modal */}
           <div id="headerLogin" className="col-12 col-md-4 login header-item">
             <button type="button" className="loginButton btn btn-primary" data-toggle="modal" data-target="#loginModal">Contributor Login</button>
           </div>
-          {/* <div id="headerLogin" className="col-12 col-md-4 login header-item">
-            <a href="#">Contributor Login</a>
-          </div> */}
-          <div className="modal" tabindex="-1" role="dialog" id="loginModal" data-backdrop="false">
+
+          {/* Login Modal */}
+          <div className="modal" tabIndex="-1" role="dialog" id="loginModal" data-backdrop="false">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -98,7 +65,7 @@ class Header extends Component {
                   </button>
                 </div>
                 <div className="modal-body">
-                  <form onSubmit={(event)=>{event.preventDefault(),this._login()}} className="loginForm">
+                  <form onSubmit={this._login} className="loginForm">
                     <label htmlFor="usernameInput">Username</label>
                     <input name="username" type="text" className="form-control" id="usernameInput" placeholder="Username" value={this.state.username} onChange={this._handleInput} required/>
 

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import LocationSearchForm from '../SearchForms/LocationSearchForm.js';
 import Vet from './Vet.js';
+import AddVet from './AddVet.js';
 
 import './Vets.css';
 
@@ -86,6 +87,8 @@ class Vets extends Component {
     });
   }
 
+
+
   render() {
     let self = this;
       // Iterate over the search results and create a display object for each
@@ -119,6 +122,44 @@ class Vets extends Component {
           {this.state.searchResults.length > 0 ? $vets : this.state.message}
           {/* <script id="googleScript"></script> */}
         </div>
+
+        {sessionStorage.getItem("token") !== null ?
+        // If the user is logged in, show the option to add data
+        <AddVet />
+        // <div id="addVet" className="col-12 col-md-4 login header-item">
+        //   <button type="button" className="addVetButton btn btn-primary" data-toggle="modal" data-target="#addVetModal">Add a Veterinarian</button>
+        // </div>
+        //
+        // // Modal Here
+        // <div className="modal" tabIndex="-1" role="dialog" id="addVetModal" data-backdrop="false">
+        //   <div className="modal-dialog" role="document">
+        //     <div className="modal-content">
+        //       <div className="modal-header">
+        //         <h5 className="modal-title">Add a Veterinarian</h5>
+        //         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+        //           <span aria-hidden="true">&times;</span>
+        //         </button>
+        //       </div>
+        //       <div className="modal-body">
+        //         <form onSubmit={this._addVet(event)} className="addVetForm">
+        //           <label htmlFor="vetNameInput">Vet Name</label>
+        //           <input name="vetNameInput" type="text" className="form-control" id="vetNameInput" placeholder="Vet Name" value={this.state.username} onChange={this._handleInput} required/>
+        //
+        //           <label htmlFor="passwordInput">Password</label>
+        //           <input name="password" type="password" className="form-control" id="passwordInput" placeholder="Password" value={this.state.password} onChange={this._handleInput} required/>
+        //
+        //           <button type="submit" className="btn btn-primary">Login</button>
+        //         </form>
+        //       </div>
+        //       <div className="modal-footer">
+        //         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </div>
+        :
+        // If the user is not logged in, don't show anything
+          <p>You're not logged in</p>}
       </div>
     );
   }

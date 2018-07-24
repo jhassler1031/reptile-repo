@@ -57,7 +57,7 @@ class Footer extends Component {
           <button type="button" className="messageButton btn btn-primary" data-toggle="modal" data-target="#messageModal">Send us a message</button>
         </div>
 
-        <div className="modal" tabindex="-1" role="dialog" id="messageModal" data-backdrop="false">
+        <div className="modal" tabIndex="-1" role="dialog" id="messageModal" data-backdrop="false">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
