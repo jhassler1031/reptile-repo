@@ -27,13 +27,13 @@
   color: white;
   font-family: 'Amatic SC', helvetica, sans-serif;
   font-size: 4rem;
-  // text-decoration: underline;
   border-bottom: 2px solid white;
   white-space: nowrap;
 }
 
 .navButton {
 background-color: #52739388;
+border-radius: 2px;
 }
 
 .navButton:not(:last-child) {
@@ -52,16 +52,32 @@ background-color: #52739388;
   padding: 10px 5px;
 }
 
-#headerLogin a {
+// #headerLogin a {
+//   font-family: 'Amatic SC', helvetica, sans-serif;
+//   font-size: 1.5rem;
+//   border: 1px solid white;
+//   color: white;
+//   padding: 10px 20px;
+//   background-color: #52739388;
+//   border-radius: 2px;
+// }
+//
+// #headerLogin a:hover {
+//   background-color: #D36B69;
+//   text-decoration: none;
+//   color: white;
+// }
+
+#headerLogin .loginButton{
   font-family: 'Amatic SC', helvetica, sans-serif;
   font-size: 1.5rem;
   border: 1px solid white;
   color: white;
-  padding: 10px 20px;
   background-color: #52739388;
+  border-radius: 2px;
 }
 
-#headerLogin a:hover {
+#headerLogin .loginButton:hover {
   background-color: #D36B69;
   text-decoration: none;
   color: white;
@@ -76,4 +92,8 @@ background-color: #52739388;
   .navButton a {
     font-size: 1.2rem;
   }
+}
+
+.modal {
+  
 }

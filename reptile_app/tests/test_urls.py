@@ -9,13 +9,14 @@ from rest_framework.authtoken.models import Token
 # ^^^^^^
 from model_mommy import mommy
 
-from reptile_app.models import Vet, Store, Illness, Message
+from reptile_app.models import Vet, Store, Illness, Message, User
 
 # Create your tests here.
 
 class VetViewsetTest(TestCase):
     def setUp(self):
         self.vet = mommy.make(Vet)
+        self.user = mommy.make(User)
 
     def test_vet_list(self):
         # Make sure the rest framework url is configured
@@ -37,39 +38,41 @@ class VetViewsetTest(TestCase):
         response = c.get(reverse('vet-detail', kwargs={'pk': self.vet.pk}), content_type='application/json')
         self.assertEquals(200, response.status_code)
 
-    # def test_vet_create(self):
+    def test_vet_create(self):
         # Functional test: get detail of vet
-        # c = APIClient()
-        #
-        # vet_data = {
-        #     'vet_name': 'testing',
-        #     'raw_address': 'testing street',
-        #     'city': 'spartanburg',
-        #     'state': 'sc',
-        #     'zip_code': '29307',
-        #     'emergency_services': True,
-        #     'boarding_services': True,
-        # }
+        c = APIClient()
+
+        vet_data = {
+            'vet_name': 'testing',
+            'raw_address': 'testing street',
+            'city': 'spartanburg',
+            'state': 'sc',
+            'zip_code': '29307',
+            'emergency_services': True,
+            'boarding_services': True,
+        }
 
         # Post request should create record and return status 201
-        # response = c.post(reverse('vet-list'), vet_data, format='json', headers={'Authorization': 'token aeccaef86b30cf787f647f7da3f11dd954bec661'})
-        # self.assertEquals(201, response.status_code)
+        token = Token.objects.create(user=self.user)
+        c.credentials(HTTP_AUTHORIZATION="Token " + token.key)
+        response = c.post(reverse('vet-list'), vet_data, format='json')
+        self.assertEquals(201, response.status_code)
 
 
         # Pull out what data I can use to compare.  Some data will be created and we
         # will not know what it is.
-        # test_data = {
-        #     'vet_name': response_data['vet_name'],
-        #     'raw_address': response_data['raw_address'],
-        #     'city': response_data['city'],
-        #     'state': response_data['state'],
-        #     'zip_code': response_data['zip_code'],
-        #     'emergency_services': response_data['emergency_services'],
-        #     'boarding_services': response_data['boarding_services']
-        # }
+        test_data = {
+            'vet_name': response.data['vet_name'],
+            'raw_address': response.data['raw_address'],
+            'city': response.data['city'],
+            'state': response.data['state'],
+            'zip_code': response.data['zip_code'],
+            'emergency_services': response.data['emergency_services'],
+            'boarding_services': response.data['boarding_services']
+        }
 
         # Make sure the planet was created with the values we provided
-        # self.assertEquals(test_data, planet_data)
+        self.assertEquals(test_data, vet_data)
 
 # Store model testing ==========================================================
 class StoreViewsetTest(TestCase):

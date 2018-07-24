@@ -1,0 +1,88 @@
+import React, { Component } from 'react';
+
+class Footer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      contactName: '',
+      contactEmail: '',
+      contactPhone: '',
+      messageText: '',
+    }
+
+    this._handleInput = this._handleInput.bind(this);
+    this._submitMessage = this._submitMessage.bind(this);
+  }
+
+  _handleInput(event) {
+    let content = event.target.value;
+    if (event.target.name === "contactName") {
+      this.setState({contactName: content});
+    }
+    if (event.target.name === "contactEmail") {
+      this.setState({contactEmail: content});
+    }
+    if (event.target.name === "contactPhone") {
+      this.setState({contactPhone: content});
+    }
+    if (event.target.name === "messageText") {
+      this.setState({messageText: content});
+    }
+  }
+
+  _submitMessage() {
+    console.log(this.state);
+  }
+
+  render() {
+    return (
+      <div className="messageSection">
+        <h1>Send Us a Message</h1>
+        <p>
+          If there is any information you feel that we are missing on this site and would like us to
+          add, or if you would like to be considered for becoming a contributor, please send us a message.  Thanks
+        </p>
+
+        <div id="message" className="footer-item">
+          <button type="button" className="messageButton btn btn-primary" data-toggle="modal" data-target="#messageModal">Send us a message</button>
+        </div>
+
+        <div className="modal" tabindex="-1" role="dialog" id="messageModal">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Send us a message</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form onSubmit={(event)=>{event.preventDefault(),this._submitMessage()}} className="messageForm">
+                  <label htmlFor="contactName">Name</label>
+                  <input name="contactName" type="text" className="form-control" id="contactName" placeholder="Name" value="" onChange={this._handleInput} required/>
+
+                  <label htmlFor="contactEmail">Email Address</label>
+                  <input name="contactEmail" type="text" className="form-control" id="contactEmail" placeholder="Email Address" value="" onChange={this._handleInput} required/>
+
+                  <label htmlFor="contactPhone">Phone Number (optional)</label>
+                  <input name="contactPhone" type="text" className="form-control" id="contactPhone" placeholder="Phone Number" value="" onChange={this._handleInput} required/>
+
+                  <label htmlFor="messageText">Message</label>
+                  <input name="messageText" type="text" className="form-control" id="messageText" placeholder="Your message here..." value="" onChange={this._handleInput} required/>
+
+                  <button type="submit" className="btn btn-primary">Send</button>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Footer;

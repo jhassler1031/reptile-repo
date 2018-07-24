@@ -25,7 +25,8 @@
   white-space: nowrap; }
 
 .navButton {
-  background-color: #52739388; }
+  background-color: #52739388;
+  border-radius: 2px; }
 
 .navButton:not(:last-child) {
   margin-right: 6px; }
@@ -40,15 +41,15 @@
   color: white;
   padding: 10px 5px; }
 
-#headerLogin a {
+#headerLogin .loginButton {
   font-family: 'Amatic SC', helvetica, sans-serif;
   font-size: 1.5rem;
   border: 1px solid white;
   color: white;
-  padding: 10px 20px;
-  background-color: #52739388; }
+  background-color: #52739388;
+  border-radius: 2px; }
 
-#headerLogin a:hover {
+#headerLogin .loginButton:hover {
   background-color: #D36B69;
   text-decoration: none;
   color: white; }

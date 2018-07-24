@@ -61,7 +61,7 @@ def location_search(obj, queryset):
         long__gte=long_range[0], long__lte=long_range[1]
         )
     else:
-        return queryset 
+        return queryset
 
 
 # Create your views here =======================================================
@@ -85,6 +85,7 @@ class VetListCreateAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         # Call the function to set the lat and long variables of the object
+        print("user: ", self.request.user)
         latlong = find_latlong(self)
         serializer.save(author = self.request.user, lat = latlong["lat"], long = latlong["lng"])
 

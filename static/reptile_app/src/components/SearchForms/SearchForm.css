@@ -3,7 +3,8 @@
   background-color: #557599bb;
   color: #EED792;
   position: relative;
-  padding: 15px; }
+  padding: 15px;
+  border-radius: 4px; }
 
 .searchFormField {
   font-family: "Josefin Sans", helvetica, sans-serif; }
