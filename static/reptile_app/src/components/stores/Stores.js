@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import LocationSearchForm from '../SearchForms/LocationSearchForm.js';
 import Store from './Store.js';
+import AddStore from './AddStore.js';
 
 import './Stores.css';
 
@@ -115,6 +116,13 @@ class Stores extends Component {
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $stores : this.state.message}
         </div>
+
+        {sessionStorage.getItem("token") !== null ?
+        // If the user is logged in, show the option to add data
+        <AddStore />
+        :
+        // If the user is not logged in, don't show anything
+          ''}
       </div>
     );
   }
