@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+
+// Import the utlitity file and set base URL
+import file from '../../utility.js';
+const baseURL = file.baseURL;
 
 class AddVet extends Component {
   constructor(props) {
@@ -15,7 +20,8 @@ class AddVet extends Component {
       website: '',
       emergency_services: false,
       boarding_services: false,
-      notes: ''
+      notes: '',
+      image: null
     }
     this._handleInput = this._handleInput.bind(this);
     this._addVet = this._addVet.bind(this);
@@ -59,9 +65,52 @@ class AddVet extends Component {
     }
   }
 
+  // Method to make post request
   _addVet(event) {
     event.preventDefault();
-    console.log("hey");
+    $('#addVetModal').modal('toggle')
+    let url = `${baseURL}/vets/`;
+    let headerInfo = sessionStorage.getItem("token");
+    let vetInfo = {
+      vet_name: this.state.vet_name,
+      raw_address: this.state.address1,
+      raw_address2: this.state.address2,
+      city: this.state.city,
+      state: this.state.state,
+      zip_code: this.state.zip_code,
+      phone: this.state.phone,
+      website: this.state.website,
+      emergency_services: this.state.emergency_services,
+      boarding_services: this.state.boarding_services,
+      notes: this.state.notes,
+      image: this.state.image
+    }
+
+    // console.log("url: ", url)
+    // console.log(typeof(headerInfo));
+    console.log(vetInfo);
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(vetInfo),
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': headerInfo
+      }
+    })
+    .then(response=>{
+      console.log("response: ", response);
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(responseAsJson=> {
+      console.log("Added vet: ", responseAsJson);
+    })
+    .catch((error)=>{
+      console.log("There was a problem: \n", error);
+    });
   }
 
   render() {
@@ -71,7 +120,7 @@ class AddVet extends Component {
           <button type="button" className="addVetButton btn btn-primary" data-toggle="modal" data-target="#addVetModal">Add a Veterinarian</button>
         </div>
 
-        // Modal Here
+        {/* // Modal Here */}
         <div className="modal" tabIndex="-1" role="dialog" id="addVetModal" data-backdrop="false">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
