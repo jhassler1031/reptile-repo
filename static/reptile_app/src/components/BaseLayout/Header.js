@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import { NavLink } from 'react-router-dom';
 
 import './Header.css';
 
-// Import the utlitity file and set geoCodeURL
+// Import the utlitity file and set login/logout URLs
 import file from '../../utility.js';
 const loginURL = file.loginURL;
 const logoutURL = file.logoutURL
@@ -28,12 +29,23 @@ class Header extends Component {
       this.setState({username: content});
     }
     if (event.target.name === "password") {
-      this.setState({username: content});
+      this.setState({password: content});
     }
   }
 
   _login() {
+    // Toggles the modal off after submit
+    $('#loginModal').modal('toggle')
+
+    let loginInfo = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    
+    // Need to post the username/password to get an auth token and save to user's local storage
     this.setState({loggedIn: true});
+
   }
 
   render() {
@@ -56,7 +68,7 @@ class Header extends Component {
           {/* <div id="headerLogin" className="col-12 col-md-4 login header-item">
             <a href="#">Contributor Login</a>
           </div> */}
-          <div className="modal" tabindex="-1" role="dialog" id="loginModal">
+          <div className="modal" tabindex="-1" role="dialog" id="loginModal" data-backdrop="false">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -68,10 +80,10 @@ class Header extends Component {
                 <div className="modal-body">
                   <form onSubmit={(event)=>{event.preventDefault(),this._login()}} className="loginForm">
                     <label htmlFor="usernameInput">Username</label>
-                    <input name="username" type="text" className="form-control" id="usernameInput" placeholder="Username" value="" onChange={this._handleInput} required/>
+                    <input name="username" type="text" className="form-control" id="usernameInput" placeholder="Username" value={this.state.username} onChange={this._handleInput} required/>
 
                     <label htmlFor="passwordInput">Password</label>
-                    <input name="password" type="text" className="form-control" id="passwordInput" placeholder="Password" value="" onChange={this._handleInput} required/>
+                    <input name="password" type="password" className="form-control" id="passwordInput" placeholder="Password" value={this.state.password} onChange={this._handleInput} required/>
 
                     <button type="submit" className="btn btn-primary">Login</button>
                   </form>

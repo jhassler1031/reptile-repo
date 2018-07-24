@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+
+import './Footer.css';
+
+// Import the utlitity file and set baseURL
+import file from '../../utility.js';
+const baseURL = file.baseURL;
 
 class Footer extends Component {
   constructor(props) {
@@ -32,7 +39,9 @@ class Footer extends Component {
   }
 
   _submitMessage() {
+    // Need to post to messages database
     console.log(this.state);
+    $('#messageModal').modal('toggle')
   }
 
   render() {
@@ -48,7 +57,7 @@ class Footer extends Component {
           <button type="button" className="messageButton btn btn-primary" data-toggle="modal" data-target="#messageModal">Send us a message</button>
         </div>
 
-        <div className="modal" tabindex="-1" role="dialog" id="messageModal">
+        <div className="modal" tabindex="-1" role="dialog" id="messageModal" data-backdrop="false">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -60,16 +69,16 @@ class Footer extends Component {
               <div className="modal-body">
                 <form onSubmit={(event)=>{event.preventDefault(),this._submitMessage()}} className="messageForm">
                   <label htmlFor="contactName">Name</label>
-                  <input name="contactName" type="text" className="form-control" id="contactName" placeholder="Name" value="" onChange={this._handleInput} required/>
+                  <input name="contactName" type="text" className="form-control" id="contactName" placeholder="Name" value={this.state.contactName} onChange={this._handleInput} required/>
 
                   <label htmlFor="contactEmail">Email Address</label>
-                  <input name="contactEmail" type="text" className="form-control" id="contactEmail" placeholder="Email Address" value="" onChange={this._handleInput} required/>
+                  <input name="contactEmail" type="text" className="form-control" id="contactEmail" placeholder="Email Address" value={this.state.contactEmail} onChange={this._handleInput} required/>
 
                   <label htmlFor="contactPhone">Phone Number (optional)</label>
-                  <input name="contactPhone" type="text" className="form-control" id="contactPhone" placeholder="Phone Number" value="" onChange={this._handleInput} required/>
+                  <input name="contactPhone" type="text" className="form-control" id="contactPhone" placeholder="Phone Number" value={this.state.contactPhone} onChange={this._handleInput}/>
 
                   <label htmlFor="messageText">Message</label>
-                  <input name="messageText" type="text" className="form-control" id="messageText" placeholder="Your message here..." value="" onChange={this._handleInput} required/>
+                  <input name="messageText" type="text" className="form-control" id="messageText" placeholder="Your message here..." value={this.state.messageText} onChange={this._handleInput} required/>
 
                   <button type="submit" className="btn btn-primary">Send</button>
                 </form>
