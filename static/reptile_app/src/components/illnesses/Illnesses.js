@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchForm from '../SearchForms/SearchForm.js';
 import Illness from './Illness.js';
+import AddIllness from './AddIllness.js';
 
 import './Illnesses.css';
 
@@ -74,6 +75,13 @@ class Illnesses extends Component {
           {/* If statement here to display either no search results message, or the search results */}
           {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
         </div>
+
+        {sessionStorage.getItem("token") !== null ?
+        // If the user is logged in, show the option to add data
+        <AddIllness />
+        :
+        // If the user is not logged in, don't show anything
+          ''}
 
       </div>
     );

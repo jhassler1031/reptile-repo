@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import './AddVet.css';
 
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
@@ -10,18 +11,18 @@ class AddVet extends Component {
     super(props);
 
     this.state = {
-      vet_name: null,
-      address1: null,
-      address2: null,
-      city: null,
-      state: null,
-      zip_code: null,
-      phone: null,
-      website: null,
+      vet_name: '',
+      address1: '',
+      address2: undefined,
+      city: '',
+      state: '',
+      zip_code: '',
+      phone: undefined,
+      website: undefined,
       emergency_services: false,
       boarding_services: false,
-      notes: null,
-      image: null
+      notes: undefined,
+      image: undefined
     }
     this._handleInput = this._handleInput.bind(this);
     this._addVet = this._addVet.bind(this);
@@ -113,7 +114,7 @@ class AddVet extends Component {
     return (
       <div className="addVetComponent">
         <div id="addVet" className="col-12 col-md-4 login header-item">
-          <button type="button" className="addVetButton btn btn-primary" data-toggle="modal" data-target="#addVetModal">Add a Veterinarian</button>
+          <button type="button" className="addVetButton btn" data-toggle="modal" data-target="#addVetModal">Add a Veterinarian</button>
         </div>
 
         {/* // Modal Here */}

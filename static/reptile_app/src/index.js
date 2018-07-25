@@ -13,11 +13,13 @@ import BaseLayout from './components/BaseLayout/BaseLayout.js';
 import Vets from './components/vets/Vets.js';
 import Stores from './components/stores/Stores.js';
 import Illnesses from './components/illnesses/Illnesses.js';
+import MyVets from './components/vets/MyVets.js';
 
 ReactDOM.render(
   <BrowserRouter>
     <BaseLayout>
       <Switch>
+        <Route path='/myvets' component={MyVets}/>
         <Route path='/vets' component={Vets}/>
         <Route path='/stores' component={Stores}/>
         <Route path='/illnesses' component={Illnesses}/>

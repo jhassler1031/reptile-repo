@@ -11,7 +11,8 @@ class Header extends Component {
     this.state = {
       // loggedIn: false,
       username: '',
-      password: ''
+      password: '',
+      loggedIn: false
     }
 
     this._handleInput = this._handleInput.bind(this);

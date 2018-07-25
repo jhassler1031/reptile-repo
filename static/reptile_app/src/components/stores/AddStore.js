@@ -10,16 +10,16 @@ class AddStore extends Component {
     super(props);
 
     this.state = {
-      store_name: null,
-      address1: null,
-      address2: null,
-      city: null,
-      state: null,
-      zip_code: null,
-      phone: null,
-      website: null,
-      notes: null,
-      image: null
+      store_name: '',
+      address1: '',
+      address2: undefined,
+      city: '',
+      state: '',
+      zip_code: '',
+      phone: undefined,
+      website: undefined,
+      notes: undefined,
+      image: undefined
     }
     this._handleInput = this._handleInput.bind(this);
     this._addStore = this._addStore.bind(this);

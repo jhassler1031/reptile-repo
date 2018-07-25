@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './BaseLayout.css';
 
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -12,12 +13,12 @@ class BaseLayout extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false
+      loggedIn: false,
     }
     this._authenticate = this._authenticate.bind(this);
   }
 
-  _authenticate(username, password) {
+  _authenticate(username, password, callback) {
     let loginInfo = {
       username: username,
       password: password
@@ -40,7 +41,6 @@ class BaseLayout extends Component {
       // Set local session storage item to {token: "token auth_token"}
       // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
       sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
-      // console.log(sessionStorage.getItem("token"));
       // Need to post the username/password to get an auth token and save to user's local storage
       this.setState({loggedIn: true});
     })

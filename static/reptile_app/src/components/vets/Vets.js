@@ -1,6 +1,7 @@
 /* global google */
 
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import LocationSearchForm from '../SearchForms/LocationSearchForm.js';
 import Vet from './Vet.js';
 import AddVet from './AddVet.js';
@@ -21,7 +22,7 @@ class Vets extends Component {
     this.state = {
       searchResults: [],
       latLong: '',
-      message: ''
+      message: '',
     }
 
     this._locationSearch = this._locationSearch.bind(this);
@@ -87,8 +88,6 @@ class Vets extends Component {
     });
   }
 
-
-
   render() {
     let self = this;
       // Iterate over the search results and create a display object for each
@@ -124,8 +123,11 @@ class Vets extends Component {
         </div>
 
         {sessionStorage.getItem("token") !== null ?
-        // If the user is logged in, show the option to add data
-        <AddVet />
+        <div className="row justify-content-center">
+        {/* If the user is logged in, show the option to add data */}
+          <AddVet />
+          <button className="navButton"><NavLink to='/myvets'>My Vet Submissions</NavLink></button>
+        </div>
         :
         // If the user is not logged in, don't show anything
           ''}

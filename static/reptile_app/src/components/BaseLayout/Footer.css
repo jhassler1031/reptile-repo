@@ -1,2 +1,6 @@
+.messageSection {
+  position: fixed;
+  bottom: 0; }
+
 .messageButton {
   border: 2px solid white; }

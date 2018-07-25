@@ -94,6 +94,14 @@ class VetRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VetSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
+# View for just showing a logged in user's vet entries
+class MyVetListAPIView(generics.ListAPIView):
+    serializer_class = VetSerializer
+
+    def get_queryset(self):
+        queryset = Vet.objects.all()
+        
+
 # Store Views ==================================================================
 class StoreListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = StoreSerializer
