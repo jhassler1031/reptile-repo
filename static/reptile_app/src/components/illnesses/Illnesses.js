@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import SearchForm from '../SearchForms/SearchForm.js';
 import Illness from './Illness.js';
 import AddIllness from './AddIllness.js';
@@ -8,8 +9,6 @@ import './Illnesses.css';
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
 const baseURL = file.baseURL;
-
-
 
 class Illnesses extends Component {
   constructor(props) {
@@ -86,9 +85,12 @@ class Illnesses extends Component {
           {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
         </div>
 
-        {sessionStorage.getItem("token") !== null ?
-        // If the user is logged in, show the option to add data
-        <AddIllness />
+        {this.state.authenticed !== false ?
+          <div className="row justify-content-center">
+          {/* If the user is logged in, show the option to add data */}
+            <AddIllness />
+            <button className="navButton"><NavLink to='/myillnesses'>My Illness Submissions</NavLink></button>
+          </div>
         :
         // If the user is not logged in, don't show anything
           ''}

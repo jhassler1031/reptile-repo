@@ -15,6 +15,7 @@ import Stores from './components/stores/Stores.js';
 import Illnesses from './components/illnesses/Illnesses.js';
 import MyVets from './components/vets/MyVets.js';
 import MyStores from './components/stores/MyStores.js';
+import MyIllnesses from './components/illnesses/MyIllnesses.js';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='/vets' component={Vets}/>
         <Route path='/mystores' component={MyStores}/>
         <Route path='/stores' component={Stores}/>
+        <Route path='/myillnesses' component={MyIllnesses}/>
         <Route path='/illnesses' component={Illnesses}/>
         <Route path='/' component={App}/>
       </Switch>

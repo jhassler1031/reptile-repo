@@ -60,10 +60,6 @@ class AddIllness extends Component {
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      return response.json();
-    })
-    .then(responseAsJson=> {
-      console.log("Added illness: ", responseAsJson);
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);

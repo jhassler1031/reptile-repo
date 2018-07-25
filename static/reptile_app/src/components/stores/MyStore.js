@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-// import './MyVet.css';
+import './MyStore.css';
 
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
