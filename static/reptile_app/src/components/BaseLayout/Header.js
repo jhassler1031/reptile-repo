@@ -11,7 +11,7 @@ class Header extends Component {
     this.state = {
       username: '',
       password: '',
-      loggedIn: false
+      loggedIn: (sessionStorage.getItem("token") !== null ? true : false)
     }
 
     this._handleInput = this._handleInput.bind(this);
@@ -40,7 +40,7 @@ class Header extends Component {
   _logout(event) {
     event.preventDefault();
     this.setState({loggedIn: false});
-    this.props.logout();
+    this.props.deauthenticate();
   }
 
   render() {

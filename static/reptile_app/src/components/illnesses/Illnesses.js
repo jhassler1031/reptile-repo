@@ -85,7 +85,7 @@ class Illnesses extends Component {
           {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
         </div>
 
-        {this.state.authenticed !== false ?
+        {this.state.authenticated !== false ?
           <div className="row justify-content-center">
           {/* If the user is logged in, show the option to add data */}
             <AddIllness />

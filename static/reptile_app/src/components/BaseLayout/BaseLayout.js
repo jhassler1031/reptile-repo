@@ -17,7 +17,7 @@ class BaseLayout extends Component {
       loggedIn: false,
     }
     this._authenticate = this._authenticate.bind(this);
-    this._logout = this._logout.bind(this);
+    this._deauthenticate = this._deauthenticate.bind(this);
   }
 
   _authenticate(username, password, callback) {
@@ -51,7 +51,7 @@ class BaseLayout extends Component {
     });
   }
 
-  _logout() {
+  _deauthenticate() {
     let headerInfo = sessionStorage.getItem("token");
 
     fetch(logoutURL, {
@@ -76,7 +76,7 @@ class BaseLayout extends Component {
   render() {
     return (
       <div className="baseLayout">
-        <Header authenticate={this._authenticate} logout={this._logout}/>
+        <Header authenticate={this._authenticate} deauthenticate={this._deauthenticate}/>
         {/* Using this to cause the refresh on login/logout */}
         {React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn})}
         {/* {this.props.children} */}
