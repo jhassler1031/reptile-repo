@@ -62,3 +62,16 @@
     font-size: 1.2rem; }
   .navButton a {
     font-size: 1.2rem; } }
+
+.logoutButton {
+  font-family: 'Amatic SC', helvetica, sans-serif;
+  font-size: 1.5rem;
+  border: 1px solid white;
+  color: white;
+  background-color: #52739388;
+  border-radius: 2px; }
+
+.logoutButton:hover {
+  background-color: #D36B69;
+  text-decoration: none;
+  color: white; }

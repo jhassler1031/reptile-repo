@@ -9,7 +9,6 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      // loggedIn: false,
       username: '',
       password: '',
       loggedIn: false
@@ -17,6 +16,7 @@ class Header extends Component {
 
     this._handleInput = this._handleInput.bind(this);
     this._login = this._login.bind(this);
+    this._logout = this._logout.bind(this);
   }
 
   _handleInput(event) {
@@ -33,10 +33,18 @@ class Header extends Component {
     event.preventDefault()
     // Toggles the modal off after submit
     $('#loginModal').modal('toggle')
+    this.setState({loggedIn: true});
     this.props.authenticate(this.state.username, this.state.password);
   }
 
+  _logout(event) {
+    event.preventDefault();
+    this.setState({loggedIn: false});
+    this.props.logout();
+  }
+
   render() {
+    let self = this;
     return (
       <div className="container-fluid header">
         <div className="row align-items-center headerRow">
@@ -50,10 +58,16 @@ class Header extends Component {
 
           <h1 className="col-12 col-md-4 header-item header-title">The Reptile Repo</h1>
 
-          {/* Button to bring up login modal */}
+          {this.state.loggedIn ?
+          <div className="col-12 col-md-4 logout">
+            <button type="button" className="logoutButton btn btn-primary"  onClick={this._logout}>Logout</button>
+          </div>
+          :
+          // Button to bring up login modal
           <div id="headerLogin" className="col-12 col-md-4 login header-item">
             <button type="button" className="loginButton btn btn-primary" data-toggle="modal" data-target="#loginModal">Contributor Login</button>
           </div>
+          }
 
           {/* Login Modal */}
           <div className="modal" tabIndex="-1" role="dialog" id="loginModal" data-backdrop="false">

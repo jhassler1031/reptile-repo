@@ -7,6 +7,7 @@ import Footer from './Footer.js';
 // Import the utlitity file and set login URL
 import file from '../../utility.js';
 const loginURL = file.loginURL;
+const logoutURL = file.logoutURL;
 
 class BaseLayout extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class BaseLayout extends Component {
       loggedIn: false,
     }
     this._authenticate = this._authenticate.bind(this);
+    this._logout = this._logout.bind(this);
   }
 
   _authenticate(username, password, callback) {
@@ -42,18 +44,40 @@ class BaseLayout extends Component {
       // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
       sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
       // Need to post the username/password to get an auth token and save to user's local storage
-      this.setState({loggedIn: sessionStorage.getItem("token")});
+      this.setState({loggedIn: true});
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);
     });
+  }
 
+  _logout() {
+    let headerInfo = sessionStorage.getItem("token");
+
+    fetch(logoutURL, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': headerInfo
+      }
+    })
+    .then(response=>{
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      sessionStorage.removeItem("token");
+      this.setState({loggedIn: false});
+    })
+    .catch((error)=>{
+      console.log("There was a problem: \n", error);
+    });
   }
 
   render() {
     return (
       <div className="baseLayout">
-        <Header authenticate={this._authenticate}/>
+        <Header authenticate={this._authenticate} logout={this._logout}/>
+        {/* Using this to cause the refresh on login/logout */}
         {React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn})}
         {/* {this.props.children} */}
         <Footer />
