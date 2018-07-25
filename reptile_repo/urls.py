@@ -40,6 +40,7 @@ urlpatterns = [
     path('myillnesses/', MyIllnessListAPIView.as_view(), name='myillness-list'),
     path('messages/', MessageListCreateAPIView.as_view(), name='message-list'),
     path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view(), name='message-detail'),
+    # path('invitations/', include('invitations.urls', namespace='invitations')),
 ]
 
 # Makes files updated available for display

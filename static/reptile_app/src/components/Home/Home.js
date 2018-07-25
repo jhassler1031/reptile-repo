@@ -16,7 +16,6 @@ class Home extends Component {
         and puts it all here where it's easy to find.  We research vets that are
         reptile friendly, local pet stores that have reptile supplies, and information
         on different illnesses related to pet reptiles</p>
-        <div className="space"></div>
       </div>
     );
   }

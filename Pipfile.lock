@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b77d0ca8cb1738cf10760dec8467b79c8f1befb371f0a6aa1792f75e26ff04a8"
+            "sha256": "cb211a7a37a8b931624a395c861d7c331020791f8130ff8cad2c46148bf7e747"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -106,6 +106,13 @@
             "index": "pypi",
             "version": "==0.3.1"
         },
+        "django-invitations": {
+            "hashes": [
+                "sha256:fe0a4c822bf695f7dac9f828c95f1dcee42dc590ed2943bd4d6ec8a1e03ab08e"
+            ],
+            "index": "pypi",
+            "version": "==1.9.2"
+        },
         "django-templated-mail": {
             "hashes": [
                 "sha256:8db807effebb42a532622e2d142dfd453dafcd0d7794c4c3332acb90656315f9",
@@ -123,11 +130,11 @@
         },
         "djoser": {
             "hashes": [
-                "sha256:5348b153d887dfea86e0ecafce1c63588705e8e74d907ba5b1d54ab94bf85ab1",
-                "sha256:9b5cfccfbe3a515e3c7a76dc0179d1b5dc9d153543def6409405bab2a660b06f"
+                "sha256:7532c95ee87882dbe3d6efc4225912456322f9254f5cb1d7d101600696334d30",
+                "sha256:f19a19248d9cdc6f1634a5eb2982a96769e19411133fc7b84981de868b60e246"
             ],
             "index": "pypi",
-            "version": "==1.1.5"
+            "version": "==1.2.0"
         },
         "gunicorn": {
             "hashes": [

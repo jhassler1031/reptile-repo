@@ -61,7 +61,6 @@ class Illnesses extends Component {
  }
 
   render() {
-    let self = this;
       // Iterate over the search results and create a display object for each
     let $illnesses = this.state.searchResults.map((illness)=> {
       return (

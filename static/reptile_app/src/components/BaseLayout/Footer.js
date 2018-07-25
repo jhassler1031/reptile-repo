@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import './Footer.css';
 
-// Import the utlitity file and set baseURL
+// Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
 const baseURL = file.baseURL;
 
@@ -14,7 +14,7 @@ class Footer extends Component {
     this.state = {
       contactName: '',
       contactEmail: '',
-      contactPhone: '',
+      contactPhone: undefined,
       messageText: '',
     }
 
@@ -38,10 +38,35 @@ class Footer extends Component {
     }
   }
 
-  _submitMessage() {
+  _submitMessage(event) {
+    event.preventDefault();
     // Need to post to messages database
-    console.log(this.state);
     $('#messageModal').modal('toggle')
+    let url = `${baseURL}/messages/`;
+    let content = {
+      contact_name: this.state.contactName,
+      contact_email: this.state.contactEmail,
+      contact_phone: this.state.contactPhone,
+      message_text: this.state.messageText
+    };
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(content),
+      headers: {
+        'Content-Type': "application/json",
+        // 'Authorization': headerInfo
+      }
+    })
+    .then(response=>{
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      console.log(response);
+    })
+    .catch((error)=>{
+      console.log("There was a problem: \n", error);
+    });
   }
 
   render() {
@@ -67,7 +92,7 @@ class Footer extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form onSubmit={(event)=>{event.preventDefault(),this._submitMessage()}} className="messageForm">
+                <form onSubmit={this._submitMessage} className="messageForm">
                   <label htmlFor="contactName">Name</label>
                   <input name="contactName" type="text" className="form-control" id="contactName" placeholder="Name" value={this.state.contactName} onChange={this._handleInput} required/>
 

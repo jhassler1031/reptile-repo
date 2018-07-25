@@ -10,7 +10,7 @@ class Store extends Component {
   render() {
     return (
       <div className="col-12 col-md-5 storeDisplay">
-        {this.props.store.image!=null ? <div className="image-container"><img src={this.props.store.image}/></div> : ''}
+        {this.props.store.image!=null ? <div className="image-container"><img src={this.props.store.image} alt="Store"/></div> : ''}
         <h1>{this.props.store.store_name}</h1>
         <p>{this.props.store.raw_address} {this.props.store.raw_address2}</p>
         <p>{this.props.store.city}, {this.props.store.state} {this.props.store.zip_code}</p>

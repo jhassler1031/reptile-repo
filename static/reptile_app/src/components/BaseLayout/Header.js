@@ -44,7 +44,6 @@ class Header extends Component {
   }
 
   render() {
-    let self = this;
     return (
       <div className="container-fluid header">
         <div className="row align-items-center headerRow">

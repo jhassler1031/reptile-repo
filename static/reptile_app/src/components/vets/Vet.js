@@ -10,7 +10,7 @@ class Vet extends Component {
   render() {
     return (
       <div className="col-12 col-md-5 vetDisplay">
-        {this.props.vet.image!=null ? <div className="image-container"><img src={this.props.vet.image}/></div> : ''}
+        {this.props.vet.image!=null ? <div className="image-container"><img src={this.props.vet.image} alt="Vet"/></div> : ''}
         <h1>{this.props.vet.vet_name}</h1>
         <p>{this.props.vet.raw_address} {this.props.vet.raw_address2}</p>
         <p>{this.props.vet.city}, {this.props.vet.state} {this.props.vet.zip_code}</p>
