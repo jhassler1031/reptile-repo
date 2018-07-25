@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker");
 .vetsContainer {
-  position: absolute;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%); }
+  margin-top: 25px; }
 
 @media (max-width: 768px) {
   .vetsContainer {

@@ -23,6 +23,7 @@ class Vets extends Component {
       searchResults: [],
       latLong: '',
       message: '',
+      token: null
     }
 
     this._locationSearch = this._locationSearch.bind(this);
@@ -88,6 +89,10 @@ class Vets extends Component {
     });
   }
 
+  static getDerivedStateFromProps() {
+   return {token: sessionStorage.getItem("token")}
+ }
+
   render() {
     let self = this;
       // Iterate over the search results and create a display object for each
@@ -122,7 +127,7 @@ class Vets extends Component {
           {/* <script id="googleScript"></script> */}
         </div>
 
-        {sessionStorage.getItem("token") !== null ?
+        {sessionStorage.getItem("token") !== undefined ?
         <div className="row justify-content-center">
         {/* If the user is logged in, show the option to add data */}
           <AddVet />

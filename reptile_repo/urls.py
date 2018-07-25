@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroyAPIView, \
                             StoreListCreateAPIView, StoreRetrieveUpdateDestroyAPIView, \
                             IllnessListCreateAPIView, IllnessRetrieveUpdateDestroyAPIView, \
-                            MessageListCreateAPIView, MessageRetrieveUpdateDestroyAPIView
+                            MessageListCreateAPIView, MessageRetrieveUpdateDestroyAPIView, \
+                            MyVetListAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('vets/', VetListCreateAPIView.as_view(), name="vet-list"),
     path('vets/<int:pk>', VetRetrieveUpdateDestroyAPIView.as_view(), name="vet-detail"),
+    path('myvets/', MyVetListAPIView.as_view(), name="myvet-list"),
     path('stores/', StoreListCreateAPIView.as_view(), name='store-list'),
     path('stores/<int:pk>', StoreRetrieveUpdateDestroyAPIView.as_view(), name='store-detail'),
     path('illnesses/', IllnessListCreateAPIView.as_view(), name='illness-list'),

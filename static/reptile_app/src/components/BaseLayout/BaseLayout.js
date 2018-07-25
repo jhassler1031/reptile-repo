@@ -42,7 +42,8 @@ class BaseLayout extends Component {
       // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
       sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
       // Need to post the username/password to get an auth token and save to user's local storage
-      this.setState({loggedIn: true});
+      console.log(sessionStorage.getItem("token"));
+      this.setState({loggedIn: sessionStorage.getItem("token")});
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);

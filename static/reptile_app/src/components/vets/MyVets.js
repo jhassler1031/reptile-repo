@@ -12,12 +12,22 @@ class MyVets extends Component {
     this.state = {
       results: []
     }
+
+    this._deleteVet = this._deleteVet.bind(this);
   }
 
   componentDidMount() {
     let url = `${baseURL}/myvets/`;
+    let headerInfo = sessionStorage.getItem("token");
 
-    fetch(url)
+    fetch(url, {
+      method: "GET",
+      // body: JSON.stringify(vetInfo),
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': headerInfo
+      }
+    })
     .then((response)=>{
       if (!response.ok) {
         throw Error(response.statusText);
@@ -33,10 +43,37 @@ class MyVets extends Component {
     });
   }
 
+  _deleteVet(vet) {
+    let url = `${baseURL}/vets/${vet.id}`;
+    let headerInfo = sessionStorage.getItem("token");
+    let vets = this.state.results;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': headerInfo
+      }
+    })
+    .then((response)=>{
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      console.log(response);
+    })
+    .catch((error)=>{
+      console.log("There was a problem: \n", error);
+    });
+
+    vets.splice(vets.indexOf(vet), 1);
+    this.setState({results:vets});
+  }
+
   render() {
-    let $myVets = this.state.results.map((myVet)=> {
+    let self = this;
+    let $myVets = this.state.results.map((vet)=> {
       return (
-        <MyVet key={myVet.id} myVet={myVet}/>
+        <MyVet key={vet.id} vet={vet} deleteVet={()=>{this._deleteVet(vet)}}/>
       )
     })
     return (

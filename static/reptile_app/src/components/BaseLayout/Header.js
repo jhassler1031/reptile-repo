@@ -38,7 +38,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid header">
         <div className="row align-items-center headerRow">
           <nav id="headerNAV" className="col-12 col-md-4 header-item">
             {/* NAV Links here */}

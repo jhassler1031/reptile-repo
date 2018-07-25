@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from django.db.models import Q
 # filters is part of django-filters used for creating search_filters in views
 from rest_framework import filters
 import requests
@@ -99,8 +100,8 @@ class MyVetListAPIView(generics.ListAPIView):
     serializer_class = VetSerializer
 
     def get_queryset(self):
-        queryset = Vet.objects.all()
-        
+        return Vet.objects.filter(Q(author=self.request.user))
+
 
 # Store Views ==================================================================
 class StoreListCreateAPIView(generics.ListCreateAPIView):
