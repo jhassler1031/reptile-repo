@@ -20,7 +20,8 @@ class Stores extends Component {
     this.state = {
       searchResults: [],
       latLong: '',
-      message: ''
+      message: '',
+      authenticated: false
     }
 
     this._locationSearch = this._locationSearch.bind(this);
@@ -83,6 +84,15 @@ class Stores extends Component {
       console.log("There was a problem: \n", error);
     });
   }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(sessionStorage.getItem("token") !== null) {
+      return {authenticated: true}
+    }
+    else {
+      return {authenticated: false}
+    }
+ }
 
   render() {
     let self = this;

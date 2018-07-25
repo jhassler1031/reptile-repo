@@ -17,7 +17,8 @@ class Illnesses extends Component {
 
     this.state = {
       searchResults: [],
-      message: ''
+      message: '',
+      authenticated: false
     }
 
     this._search = this._search.bind(this);
@@ -50,6 +51,15 @@ class Illnesses extends Component {
       console.log("There was a problem: \n", error);
     });
   }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(sessionStorage.getItem("token") !== null) {
+      return {authenticated: true}
+    }
+    else {
+      return {authenticated: false}
+    }
+ }
 
   render() {
     let self = this;

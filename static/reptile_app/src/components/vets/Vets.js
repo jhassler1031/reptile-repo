@@ -23,7 +23,7 @@ class Vets extends Component {
       searchResults: [],
       latLong: '',
       message: '',
-      token: null
+      authenticated: false
     }
 
     this._locationSearch = this._locationSearch.bind(this);
@@ -89,8 +89,13 @@ class Vets extends Component {
     });
   }
 
-  static getDerivedStateFromProps() {
-   return {token: sessionStorage.getItem("token")}
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(sessionStorage.getItem("token") !== null) {
+      return {authenticated: true}
+    }
+    else {
+      return {authenticated: false}
+    }
  }
 
   render() {
@@ -127,7 +132,7 @@ class Vets extends Component {
           {/* <script id="googleScript"></script> */}
         </div>
 
-        {sessionStorage.getItem("token") !== undefined ?
+        {this.state.authenticated !== false ?
         <div className="row justify-content-center">
         {/* If the user is logged in, show the option to add data */}
           <AddVet />

@@ -42,7 +42,6 @@ class BaseLayout extends Component {
       // Using sessionStorage instead of localStorage because it will be deleted when the browser closes
       sessionStorage.setItem("token", "token " + responseAsJson.auth_token);
       // Need to post the username/password to get an auth token and save to user's local storage
-      console.log(sessionStorage.getItem("token"));
       this.setState({loggedIn: sessionStorage.getItem("token")});
     })
     .catch((error)=>{
@@ -55,7 +54,8 @@ class BaseLayout extends Component {
     return (
       <div className="baseLayout">
         <Header authenticate={this._authenticate}/>
-        {this.props.children}
+        {React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn})}
+        {/* {this.props.children} */}
         <Footer />
       </div>
     );
