@@ -35,7 +35,6 @@ class MyVets extends Component {
       return response.json();
     })
     .then((responseAsJson)=>{
-      console.log(responseAsJson);
       this.setState({results: responseAsJson});
     })
     .catch((error)=>{
@@ -59,7 +58,6 @@ class MyVets extends Component {
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      console.log(response);
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);

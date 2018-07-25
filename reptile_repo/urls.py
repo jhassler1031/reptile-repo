@@ -22,7 +22,7 @@ from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdate
                             StoreListCreateAPIView, StoreRetrieveUpdateDestroyAPIView, \
                             IllnessListCreateAPIView, IllnessRetrieveUpdateDestroyAPIView, \
                             MessageListCreateAPIView, MessageRetrieveUpdateDestroyAPIView, \
-                            MyVetListAPIView
+                            MyVetListAPIView, MyStoreListAPIView, MyIllnessListAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,11 +31,13 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('vets/', VetListCreateAPIView.as_view(), name="vet-list"),
     path('vets/<int:pk>', VetRetrieveUpdateDestroyAPIView.as_view(), name="vet-detail"),
-    path('myvets/', MyVetListAPIView.as_view(), name="myvet-list"),
+    path('myvets/', MyVetListAPIView.as_view(), name='myvet-list'),
     path('stores/', StoreListCreateAPIView.as_view(), name='store-list'),
     path('stores/<int:pk>', StoreRetrieveUpdateDestroyAPIView.as_view(), name='store-detail'),
+    path('mystores/', MyStoreListAPIView.as_view(), name='mystore-list'),
     path('illnesses/', IllnessListCreateAPIView.as_view(), name='illness-list'),
     path('illnesses/<int:pk>', IllnessRetrieveUpdateDestroyAPIView.as_view(), name='illness-detail'),
+    path('myillnesses/', MyIllnessListAPIView.as_view(), name='myillness-list'),
     path('messages/', MessageListCreateAPIView.as_view(), name='message-list'),
     path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view(), name='message-detail'),
 ]

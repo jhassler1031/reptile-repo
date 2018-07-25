@@ -95,7 +95,7 @@ class VetRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VetSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
-# View for just showing a logged in user's vet entries
+# View for just showing a logged in user's vet entries =========================
 class MyVetListAPIView(generics.ListAPIView):
     serializer_class = VetSerializer
 
@@ -125,6 +125,13 @@ class StoreRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = StoreSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
+# View for just showing a logged in user's store entries =========================
+class MyStoreListAPIView(generics.ListAPIView):
+    serializer_class = StoreSerializer
+
+    def get_queryset(self):
+        return Store.objects.filter(Q(author=self.request.user))
+
 # Illness Views ================================================================
 class IllnessListCreateAPIView(generics.ListCreateAPIView):
     queryset = Illness.objects.all()
@@ -140,6 +147,13 @@ class IllnessRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     queryset = Illness.objects.all()
     serializer_class = IllnessSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+# View for just showing a logged in user's illness entries =========================
+class MyIllnessListAPIView(generics.ListAPIView):
+    serializer_class = IllnessSerializer
+
+    def get_queryset(self):
+        return Illness.objects.filter(Q(author=self.request.user))
 
 # Contact Views ================================================================
 # May not actually use this endpoint and only access through admin but add just in case

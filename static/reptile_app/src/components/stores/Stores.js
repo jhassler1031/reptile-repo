@@ -1,6 +1,7 @@
 /* global google */
 
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import LocationSearchForm from '../SearchForms/LocationSearchForm.js';
 import Store from './Store.js';
 import AddStore from './AddStore.js';
@@ -127,9 +128,12 @@ class Stores extends Component {
           {this.state.searchResults.length > 0 ? $stores : this.state.message}
         </div>
 
-        {sessionStorage.getItem("token") !== null ?
-        // If the user is logged in, show the option to add data
-        <AddStore />
+        {this.state.authenticated !== false ?
+          <div className="row justify-content-center">
+          {/* If the user is logged in, show the option to add data */}
+          <AddStore />
+          <button className="navButton"><NavLink to='/mystores'>My Pet Store Submissions</NavLink></button>
+        </div>
         :
         // If the user is not logged in, don't show anything
           ''}

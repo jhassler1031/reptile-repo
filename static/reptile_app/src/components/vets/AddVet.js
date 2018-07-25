@@ -96,14 +96,9 @@ class AddVet extends Component {
       }
     })
     .then(response=>{
-      console.log("response: ", response);
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      return response.json();
-    })
-    .then(responseAsJson=> {
-      console.log("Added vet: ", responseAsJson);
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);
