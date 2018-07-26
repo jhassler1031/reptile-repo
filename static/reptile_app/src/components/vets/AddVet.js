@@ -22,7 +22,7 @@ class AddVet extends Component {
       emergency_services: false,
       boarding_services: false,
       notes: undefined,
-      image: undefined
+      image: undefined,
     }
     this._handleInput = this._handleInput.bind(this);
     this._addVet = this._addVet.bind(this);
@@ -63,6 +63,11 @@ class AddVet extends Component {
     if (event.target.name === "boardingInput") {
       this.setState({boarding_services: !this.state.boarding_services});
     }
+    if (event.target.name === "imageInput") {
+      let file = event.target.files[0];
+      console.log(file);
+      this.setState({image: file});
+    }
   }
 
   // Method to make post request
@@ -71,26 +76,42 @@ class AddVet extends Component {
     $('#addVetModal').modal('toggle')
     let url = `${baseURL}/vets/`;
     let headerInfo = sessionStorage.getItem("token");
-    let vetInfo = {
-      "vet_name": this.state.vet_name,
-      "raw_address": this.state.address1,
-      "raw_address2": this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      "zip_code": this.state.zip_code,
-      phone: this.state.phone,
-      website: this.state.website,
-      "emergency_services": this.state.emergency_services,
-      "boarding_services": this.state.boarding_services,
-      notes: this.state.notes,
-      image: this.state.image
-    }
+    // let vetInfo = {
+    //   "vet_name": this.state.vet_name,
+    //   "raw_address": this.state.address1,
+    //   "raw_address2": this.state.address2,
+    //   city: this.state.city,
+    //   state: this.state.state,
+    //   "zip_code": this.state.zip_code,
+    //   phone: this.state.phone,
+    //   website: this.state.website,
+    //   "emergency_services": this.state.emergency_services,
+    //   "boarding_services": this.state.boarding_services,
+    //   notes: this.state.notes,
+    //   image: this.state.image
+    // }
+    let vetInfo = new FormData();
+    vetInfo.append("vet_name", this.state.vet_name);
+    vetInfo.append("raw_address", this.state.address1);
+    vetInfo.append("raw_address2", this.state.address2);
+    vetInfo.append("city", this.state.city);
+    vetInfo.append("state", this.state.state);
+    vetInfo.append("zip_code", this.state.zip_code);
+    vetInfo.append("phone", this.state.phone);
+    vetInfo.append("website", this.state.website);
+    vetInfo.append("emergency_services", this.state.emergency_services);
+    vetInfo.append("boarding_services", this.state.boarding_services);
+    vetInfo.append("notes", this.state.notes);
+    vetInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
 
     fetch(url, {
       method: "POST",
-      body: JSON.stringify(vetInfo),
+      // body: JSON.stringify(vetInfo),
+      body: vetInfo,
       headers: {
-        'Content-Type': "application/json",
+        // 'Content-Type': "application/json",
+        // Accept: 'application/json',
+        // 'Content-Type': "multipart/form-data",
         'Authorization': headerInfo
       }
     })
@@ -122,7 +143,7 @@ class AddVet extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form onSubmit={this._addVet} className="addVetForm">
+                <form onSubmit={this._addVet} encType='multipart/form-data' className="addVetForm">
                   <label htmlFor="vetNameInput">Vet Name</label>
                   <input name="vetNameInput" type="text" className="form-control" id="vetNameInput" placeholder="Vet Name" value={this.state.vet_name} onChange={this._handleInput} required/>
 
@@ -155,6 +176,9 @@ class AddVet extends Component {
 
                   <label htmlFor="notesInput">Notes</label>
                   <input name="notesInput" type="text" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+
+                  <label htmlFor="imageInput">Image Upload</label>
+                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary">Submit</button>
                 </form>

@@ -75,7 +75,6 @@ class Vets extends Component {
     })
     .then(responseAsJson => {
       if (responseAsJson.length > 0) {
-        console.log(responseAsJson);
         self.setState({searchResults: responseAsJson, message: ''});
         // Function to load a JS script tag in the body needed by google maps
         self._loadJS();

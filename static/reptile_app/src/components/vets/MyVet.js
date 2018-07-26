@@ -131,8 +131,8 @@ class MyVet extends Component {
     return (
       <div className="col-5 myVetDisplay">
         <h1>{this.state.vet_name}</h1>
-        <p>Emergency Services Available: {(this.props.vet.emergency_services ? "Yes" : "No")}</p>
-        <p>Boarding Services Available: {(this.props.vet.boarding_services ? "Yes" : "No")}</p>
+        <p>Emergency Services Available: {(this.state.emergency_services ? "Yes" : "No")}</p>
+        <p>Boarding Services Available: {(this.state.boarding_services ? "Yes" : "No")}</p>
 
         {/* Button to open modal to edit entry */}
         <div id="editVet" className="col-12 col-md-4">

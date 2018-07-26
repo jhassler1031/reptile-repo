@@ -54,6 +54,10 @@ class AddStore extends Component {
     if (event.target.name === "notesInput") {
       this.setState({notes: content});
     }
+    if (event.target.name === "imageInput") {
+      let file = event.target.files[0];
+      this.setState({"image": file});
+    }
   }
 
   // Method to make post request
@@ -62,24 +66,36 @@ class AddStore extends Component {
     $('#addStoreModal').modal('toggle')
     let url = `${baseURL}/stores/`;
     let headerInfo = sessionStorage.getItem("token");
-    let storeInfo = {
-      "store_name": this.state.store_name,
-      "raw_address": this.state.address1,
-      "raw_address2": this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      "zip_code": this.state.zip_code,
-      phone: this.state.phone,
-      website: this.state.website,
-      notes: this.state.notes,
-      image: this.state.image
-    }
+    // let storeInfo = {
+    //   "store_name": this.state.store_name,
+    //   "raw_address": this.state.address1,
+    //   "raw_address2": this.state.address2,
+    //   city: this.state.city,
+    //   state: this.state.state,
+    //   "zip_code": this.state.zip_code,
+    //   phone: this.state.phone,
+    //   website: this.state.website,
+    //   notes: this.state.notes,
+    //   image: this.state.image
+    // }
+    let storeInfo = new FormData();
+    storeInfo.append("store_name", this.state.store_name);
+    storeInfo.append("raw_address", this.state.address1);
+    storeInfo.append("raw_address2", this.state.address2);
+    storeInfo.append("city", this.state.city);
+    storeInfo.append("state", this.state.state);
+    storeInfo.append("zip_code", this.state.zip_code);
+    storeInfo.append("phone", this.state.phone);
+    storeInfo.append("website", this.state.website);
+    storeInfo.append("notes", this.state.notes);
+    storeInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
 
     fetch(url, {
       method: "POST",
-      body: JSON.stringify(storeInfo),
+      // body: JSON.stringify(storeInfo),
+      body: storeInfo,
       headers: {
-        'Content-Type': "application/json",
+        // 'Content-Type': "application/json",
         'Authorization': headerInfo
       }
     })
@@ -111,7 +127,7 @@ class AddStore extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form onSubmit={this._addStore} className="addStoreForm">
+                <form onSubmit={this._addStore} encType='multipart/form-data' className="addStoreForm">
                   <label htmlFor="storeNameInput">Store Name</label>
                   <input name="storeNameInput" type="text" className="form-control" id="storeNameInput" placeholder="Store Name" value={this.state.store_name} onChange={this._handleInput} required/>
 
@@ -138,6 +154,10 @@ class AddStore extends Component {
 
                   <label htmlFor="notesInput">Notes</label>
                   <input name="notesInput" type="text" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+
+                  {/* Input for Images */}
+                  <label htmlFor="imageInput">Upload Image</label>
+                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary">Submit</button>
                 </form>

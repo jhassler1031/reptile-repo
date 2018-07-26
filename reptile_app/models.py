@@ -21,7 +21,7 @@ class Vet(models.Model):
     website = models.CharField(max_length=255, null=True)
     emergency_services = models.NullBooleanField()
     boarding_services = models.NullBooleanField()
-    image = models.FileField(blank=True, null=True, upload_to="media/")
+    image = models.ImageField(blank=True, null=True, upload_to="media/")
     notes = models.TextField(null=True)
 
     # Being set by perform_create in VetListCreateAPIView
@@ -45,7 +45,7 @@ class Store(models.Model):
     zip_code = models.CharField(max_length=5)
     phone = models.CharField(max_length=20, null=True)
     website = models.CharField(max_length=255, null=True)
-    image = models.FileField(blank=True, null=True, upload_to="media/")
+    image = models.ImageField(blank=True, null=True, upload_to="media/")
     notes = models.TextField(null=True)
 
     # Being set by perform_create in StoreListCreateAPIView
@@ -82,4 +82,3 @@ class Message(models.Model):
 
     def __str__(self):
         return f"Message {self.id} from {self.contact_name}"
-    

@@ -17,6 +17,7 @@ django-cors-headers = "*"
 model-mommy = "*"
 coverage = "*"
 django-invitations = "*"
+pillow = "*"
 
 [dev-packages]
 
