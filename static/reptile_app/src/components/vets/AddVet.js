@@ -57,12 +57,11 @@ class AddVet extends Component {
     if (event.target.name === "notesInput") {
       this.setState({notes: content});
     }
-    // ????????????????????????????????????????
     if (event.target.name === "emergencyInput") {
-      this.setState({emergency_services: !content});
+      this.setState({emergency_services: !this.state.emergency_services});
     }
     if (event.target.name === "boardingInput") {
-      this.setState({boarding_services: !content});
+      this.setState({boarding_services: !this.state.boarding_services});
     }
   }
 
@@ -149,10 +148,10 @@ class AddVet extends Component {
                   <input name="websiteInput" type="text" className="form-control" id="websiteInput" placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="emergencyInput">Emergency Services Offered?</label>
-                  <input name="emergencyInput" type="radio" value={this.state.emergency_services} checked={this.state.emergency_services} onChange={this._handleInput}/>
+                  <input name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
 
                   <label htmlFor="boardingInput">Boarding Services Offered?</label>
-                  <input name="boardingInput" type="radio" value={this.state.boarding_services} checked={this.state.boarding_services} onChange={this._handleInput}/>
+                  <input name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
 
                   <label htmlFor="notesInput">Notes</label>
                   <input name="notesInput" type="text" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />

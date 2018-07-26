@@ -4,4 +4,6 @@ Djangorestframework
 djoser
 django-heroku
 gunicorn
-psycopg2-binary 
+psycopg2-binary
+django-filter
+django-cors-headers
