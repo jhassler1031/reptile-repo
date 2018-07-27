@@ -21,7 +21,7 @@ class AddStore extends Component {
       phone: '',
       website: '',
       notes: '',
-      image: undefined
+      image: ''
     }
     this._handleInput = this._handleInput.bind(this);
     this._addStore = this._addStore.bind(this);
@@ -79,7 +79,7 @@ class AddStore extends Component {
     storeInfo.append("phone", this.state.phone);
     storeInfo.append("website", this.state.website);
     storeInfo.append("notes", this.state.notes);
-    storeInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
+    storeInfo.append("image", this.state.image);
 
     fetch(url, {
       method: "POST",

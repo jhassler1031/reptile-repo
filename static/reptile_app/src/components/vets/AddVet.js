@@ -65,7 +65,6 @@ class AddVet extends Component {
     }
     if (event.target.name === "imageInput") {
       let file = event.target.files[0];
-      console.log(file);
       this.setState({image: file});
     }
   }

@@ -18,14 +18,14 @@ class MyStore extends Component {
       // On none required fields, doing an if before setting state value to avoid error
       store_name: this.props.store.store_name,
       address1: this.props.store.raw_address,
-      address2: (this.props.store.raw_address2 !== null ? this.props.store.raw_address2 : undefined),
+      address2: (this.props.store.raw_address2 !== null ? this.props.store.raw_address2 : ''),
       city: this.props.store.city,
       state: this.props.store.state,
       zip_code: this.props.store.zip_code,
-      phone: (this.props.store.phone!== null ? this.props.store.phone : undefined),
-      website: (this.props.store.website !== null ? this.props.store.website : undefined),
-      notes: (this.props.store.notes !== null ? this.props.store.notes : undefined),
-      image: undefined
+      phone: (this.props.store.phone!== null ? this.props.store.phone : ''),
+      website: (this.props.store.website !== null ? this.props.store.website : ''),
+      notes: (this.props.store.notes !== null ? this.props.store.notes : ''),
+      image: (this.props.store.image !== null ? 'no file' : null)
     }
     this._editStore = this._editStore.bind(this);
     this._handleInput = this._handleInput.bind(this);
@@ -82,7 +82,9 @@ class MyStore extends Component {
     storeInfo.append("phone", this.state.phone);
     storeInfo.append("website", this.state.website);
     storeInfo.append("notes", this.state.notes);
-    storeInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
+    if (this.state.image !== null && this.state.image !== 'no file') {
+      storeInfo.append("image", this.state.image);
+    }
 
     fetch(url, {
       method: "PUT",
@@ -112,7 +114,7 @@ class MyStore extends Component {
 
           <div className="col-12 col-md-6">
             <h1>{this.props.store.store_name}</h1>
-            <p>{this.props.store.raw_address} {this.props.store.raw_address2}</p>
+            <p>{this.props.store.raw_address} {this.props.store.raw_address2!==null ? this.props.store.raw_address2 : ''}</p>
             <p>{this.props.store.city}, {this.props.store.state} {this.props.store.zip_code}</p>
             {this.props.store.phone!=null ? <p>Phone: {this.props.store.phone}</p> : ''}
             {this.props.store.website!=null ? <div className="btn website-button"><a href={this.props.store.website} target="_blank">Website</a></div> : ''}
@@ -169,7 +171,7 @@ class MyStore extends Component {
                   <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editStoreNotesInput${this.props.store.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
                   <label htmlFor="imageInput">Upload Image</label>
-                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
+                  <input name="imageInput" type="file" className="form-control" id={`editStoreImageInput${this.props.store.id}`} onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
