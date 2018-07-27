@@ -74,7 +74,7 @@ class MyIllnesses extends Component {
       )
     })
     return (
-      <div className="row justify-content-center">
+      <div className="row justify-content-center no-gutters">
         {$myIllnesses}
       </div>
     );

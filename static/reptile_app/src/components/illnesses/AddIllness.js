@@ -94,7 +94,7 @@ class AddIllness extends Component {
                   <input name="symptomsInput" type="text" className="form-control" id="symptomsInput" placeholder="symptoms" value={this.state.symptoms} onChange={this._handleInput} required/>
 
                   <label htmlFor="descriptionInput">Description</label>
-                  <input name="descriptionInput" type="text" className="form-control" id="descriptionInput" placeholder="Description" value={this.state.description} onChange={this._handleInput} required/>
+                  <textarea name="descriptionInput" type="text" rows="5" className="form-control" id="descriptionInput" placeholder="Description" value={this.state.description} onChange={this._handleInput} required></textarea>
 
                   <label htmlFor="speciesInput">Species Affected</label>
                   <input name="speciesInput" type="text" className="form-control" id="speciesInput" placeholder="Species Affected" value={this.state.species_affected} onChange={this._handleInput} required/>
@@ -103,7 +103,7 @@ class AddIllness extends Component {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

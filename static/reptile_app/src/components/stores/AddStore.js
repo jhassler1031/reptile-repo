@@ -68,18 +68,7 @@ class AddStore extends Component {
     $('#addStoreModal').modal('toggle')
     let url = `${baseURL}/stores/`;
     let headerInfo = sessionStorage.getItem("token");
-    // let storeInfo = {
-    //   "store_name": this.state.store_name,
-    //   "raw_address": this.state.address1,
-    //   "raw_address2": this.state.address2,
-    //   city: this.state.city,
-    //   state: this.state.state,
-    //   "zip_code": this.state.zip_code,
-    //   phone: this.state.phone,
-    //   website: this.state.website,
-    //   notes: this.state.notes,
-    //   image: this.state.image
-    // }
+
     let storeInfo = new FormData();
     storeInfo.append("store_name", this.state.store_name);
     storeInfo.append("raw_address", this.state.address1);
@@ -94,10 +83,8 @@ class AddStore extends Component {
 
     fetch(url, {
       method: "POST",
-      // body: JSON.stringify(storeInfo),
       body: storeInfo,
       headers: {
-        // 'Content-Type': "application/json",
         'Authorization': headerInfo
       }
     })
@@ -155,7 +142,7 @@ class AddStore extends Component {
                   <input name="websiteInput" type="text" className="form-control" id="websiteInput" placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="notesInput">Notes</label>
-                  <input name="notesInput" type="text" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+                  <textarea name="notesInput" type="text" rows="5" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
                   {/* Input for Images */}
                   <label htmlFor="imageInput">Upload Image</label>
@@ -165,7 +152,7 @@ class AddStore extends Component {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

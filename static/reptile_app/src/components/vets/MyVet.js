@@ -6,6 +6,7 @@ import './MyVet.css';
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
 const baseURL = file.baseURL;
+const noImageURL = baseURL + "/media/media/noimagefound.JPG";
 
 // This class is to give a more detailed view of a contributors vets with the options
 // to edit or delete.
@@ -67,6 +68,11 @@ class MyVet extends Component {
     if (event.target.name === "boardingInput") {
       this.setState({boarding_services: !this.state.boarding_services});
     }
+    if (event.target.name === "imageInput") {
+      let file = event.target.files[0];
+      console.log(file);
+      this.setState({image: file});
+    }
   }
 
   _editVet(event) {
@@ -74,26 +80,39 @@ class MyVet extends Component {
     $(`#editVetModal${this.props.vet.id}`).modal('toggle')
     let url = `${baseURL}/vets/${this.props.vet.id}`;
     let headerInfo = sessionStorage.getItem("token");
-    let vetInfo = {
-      "vet_name": this.state.vet_name,
-      "raw_address": this.state.address1,
-      "raw_address2": this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      "zip_code": this.state.zip_code,
-      phone: this.state.phone,
-      website: this.state.website,
-      "emergency_services": this.state.emergency_services,
-      "boarding_services": this.state.boarding_services,
-      notes: this.state.notes,
-      image: this.state.image
-    }
+    // let vetInfo = {
+    //   "vet_name": this.state.vet_name,
+    //   "raw_address": this.state.address1,
+    //   "raw_address2": this.state.address2,
+    //   city: this.state.city,
+    //   state: this.state.state,
+    //   "zip_code": this.state.zip_code,
+    //   phone: this.state.phone,
+    //   website: this.state.website,
+    //   "emergency_services": this.state.emergency_services,
+    //   "boarding_services": this.state.boarding_services,
+    //   notes: this.state.notes,
+    //   image: this.state.image
+    // }
+    let vetInfo = new FormData();
+    vetInfo.append("vet_name", this.state.vet_name);
+    vetInfo.append("raw_address", this.state.address1);
+    vetInfo.append("raw_address2", this.state.address2);
+    vetInfo.append("city", this.state.city);
+    vetInfo.append("state", this.state.state);
+    vetInfo.append("zip_code", this.state.zip_code);
+    vetInfo.append("phone", this.state.phone);
+    vetInfo.append("website", this.state.website);
+    vetInfo.append("emergency_services", this.state.emergency_services);
+    vetInfo.append("boarding_services", this.state.boarding_services);
+    vetInfo.append("notes", this.state.notes);
+    vetInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
 
     fetch(url, {
       method: "PUT",
-      body: JSON.stringify(vetInfo),
+      body: vetInfo,
       headers: {
-        'Content-Type': "application/json",
+        // 'Content-Type': "application/json",
         'Authorization': headerInfo
       }
     })
@@ -104,24 +123,6 @@ class MyVet extends Component {
       }
       return response.json();
     })
-    // .then(responseAsJson=> {
-    //   console.log("Edited vet: ", responseAsJson);
-    //   this.setState({
-    //     vet_name: responseAsJson.vet_name,
-    //     address1: responseAsJson.raw_address,
-    //     address2: (responseAsJson.raw_address2 !== null ? responseAsJson.raw_address2 : undefined),
-    //     city: responseAsJson.city,
-    //     state: responseAsJson.state,
-    //     zip_code: responseAsJson.zip_code,
-    //     phone: (responseAsJson.phone !== null ? responseAsJson.phone : undefined),
-    //     website: (responseAsJson.website !== null ? responseAsJson.website : undefined),
-    //     emergency_services: (responseAsJson.emergency_services ? true : false),
-    //     boarding_services: (responseAsJson.boarding_services ? true : false),
-    //     notes: (responseAsJson.notes !== null ? responseAsJson.notes : undefined),
-    //     image: undefined
-    //   });
-    //   console.log(this.state);
-    // })
     .catch((error)=>{
       console.log("There was a problem: \n", error);
     });
@@ -129,14 +130,30 @@ class MyVet extends Component {
 
   render() {
     return (
-      <div className="col-5 myVetDisplay">
-        <h1>{this.state.vet_name}</h1>
-        <p>Emergency Services Available: {(this.state.emergency_services ? "Yes" : "No")}</p>
-        <p>Boarding Services Available: {(this.state.boarding_services ? "Yes" : "No")}</p>
+      <div className="col-11 vetDisplay myVetDisplay">
+        <div className="row no-gutters">
+          <div className="col-12 col-md-6 image-container">
+            {this.props.vet.image !== null ? <img src={this.props.vet.image} alt="Vet"/> : <img src={noImageURL} alt="Default"/>}
+          </div>
 
-        {/* Button to open modal to edit entry */}
-        <div id="editVet" className="col-12 col-md-4">
-          <button type="button" className="editVetButton btn" data-toggle="modal" data-target={`#editVetModal${this.props.vet.id}`}>Edit Entry</button>
+          <div className="col-12 col-md-6">
+            <h1>{this.props.vet.vet_name}</h1>
+            <p>{this.props.vet.raw_address} {this.props.vet.raw_address2}</p>
+            <p>{this.props.vet.city}, {this.props.vet.state} {this.props.vet.zip_code}</p>
+            {this.props.vet.phone!=null ? <p>Phone: {this.props.vet.phone}</p> : ''}
+            {this.props.vet.website!=null ? <div className="btn website-button"><a href={this.props.vet.website} target="_blank">Website</a></div> : ''}
+            <p>Emergency Services Available: {this.props.vet.emergency_services ? "Yes" : "No"}</p>
+            <p>Boarding Services Available: {this.props.vet.boarding_services ? "Yes" : "No"}</p>
+            {this.props.vet.notes!=null ? <p>Notes: {this.props.vet.notes}</p> : ''}
+
+            <div className="row justify-content-center">
+              {/* Button to open modal to edit entry */}
+              <button type="button" className="col-3 btn submit-button" data-toggle="modal" data-target={`#editVetModal${this.props.vet.id}`}>Edit Entry</button>
+
+              {/* Button to delete entry */}
+              <input className="col-3 btn submit-button" type="button" value="Delete Entry" onClick={this.props.deleteVet}/>
+            </div>
+          </div>
         </div>
 
         {/* Modal to edit entry */}
@@ -176,26 +193,30 @@ class MyVet extends Component {
                   <input name="websiteInput" type="text" className="form-control" id={`editVetWebsiteInput${this.props.vet.id}`} placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="emergencyInput">Emergency Services Offered?</label>
-                  <input name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
+                  <input className="check-box" name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
+
+                  <br/>
 
                   <label htmlFor="boardingInput">Boarding Services Offered?</label>
-                  <input name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
+                  <input className="check-box" name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
+
+                  <br/>
 
                   <label htmlFor="notesInput">Notes</label>
-                  <input name="notesInput" type="text" className="form-control" id={`editVetNotesInput${this.props.vet.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+                  <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editVetNotesInput${this.props.vet.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
 
         {/* Button to delete entry */}
-        <input className="btn" type="button" value="Delete Entry" onClick={this.props.deleteVet}/>
+        {/* <input className="btn" type="button" value="Delete Entry" onClick={this.props.deleteVet}/> */}
 
       </div>
     );

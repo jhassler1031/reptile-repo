@@ -169,13 +169,17 @@ class AddVet extends Component {
                   <input name="websiteInput" type="text" className="form-control" id="websiteInput" placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="emergencyInput">Emergency Services Offered?</label>
-                  <input name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
+                  <input className="check-box" name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
+
+                  <br/>
 
                   <label htmlFor="boardingInput">Boarding Services Offered?</label>
-                  <input name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
+                  <input className="check-box" name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
+
+                  <br/>
 
                   <label htmlFor="notesInput">Notes</label>
-                  <input name="notesInput" type="text" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+                  <textarea name="notesInput" type="text" rows="5" className="form-control" id="notesInput" placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
                   <label htmlFor="imageInput">Image Upload</label>
                   <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
@@ -184,7 +188,7 @@ class AddVet extends Component {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

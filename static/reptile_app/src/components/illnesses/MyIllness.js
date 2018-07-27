@@ -72,12 +72,24 @@ class MyIllness extends Component {
 
   render() {
     return (
-      <div className="col-5 myIllnessDisplay">
-        <h1>{this.state.illness_name}</h1>
+      <div className="col-11 illnessDisplay myIllnessDisplay">
+        <h1>{this.props.illness.illness_name}</h1>
+        <div className="row justify-content-center">
+          <div className="col-6 illness-content">
+            <p>Symptoms: {this.props.illness.symptoms}</p>
+            <p>Species Affected: {this.props.illness.species_affected}</p>
+            <p>{this.props.illness.description}</p>
+          </div>
 
-        {/* Button to open modal to edit entry */}
-        <div id="editIllness" className="col-12 col-md-4">
-          <button type="button" className="editIllnessButton btn" data-toggle="modal" data-target={`#editIllnessModal${this.props.illness.id}`}>Edit Entry</button>
+          <div className="col-6">
+            <div className="row justify-content-center">
+              {/* Button to open modal to edit entry */}
+              <button type="button" className="col-3 submit-button btn" data-toggle="modal" data-target={`#editIllnessModal${this.props.illness.id}`}>Edit Entry</button>
+
+              {/* Button to delete entry */}
+              <input className="col-3 btn submit-button" type="button" value="Delete Entry" onClick={this.props.deleteIllness}/>
+            </div>
+          </div>
         </div>
 
         {/* Modal to edit entry */}
@@ -99,24 +111,20 @@ class MyIllness extends Component {
                   <input name="symptoms" type="text" className="form-control" id={`editIllnessSymptomsInput${this.props.illness.id}`} placeholder="Symptoms" value={this.state.symptoms} onChange={this._handleInput} required/>
 
                   <label htmlFor="description">Description</label>
-                  <input name="description" type="text" className="form-control" id={`editIllnessDescriptionInput${this.props.illness.id}`} placeholder="Description" value={this.state.description} onChange={this._handleInput}/>
+                  <textarea name="description" type="text" rows="5" className="form-control" id={`editIllnessDescriptionInput${this.props.illness.id}`} placeholder="Description" value={this.state.description} onChange={this._handleInput}></textarea>
 
                   <label htmlFor="speciesAffected">Species Affected</label>
                   <input name="speciesAffected" type="text" className="form-control" id={`editIllnessSpeciesInput${this.props.illness.id}`} placeholder="Species Affected" value={this.state.species_affected} onChange={this._handleInput} required/>
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Button to delete entry */}
-        <input className="btn" type="button" value="Delete Entry" onClick={this.props.deleteIllness}/>
-
       </div>
     );
   }

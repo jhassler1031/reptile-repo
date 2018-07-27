@@ -103,7 +103,7 @@ class Footer extends Component {
                   <input name="contactPhone" type="text" className="form-control" id="contactPhone" placeholder="Phone Number" value={this.state.contactPhone} onChange={this._handleInput}/>
 
                   <label htmlFor="messageText">Message</label>
-                  <input name="messageText" type="text" className="form-control" id="messageText" placeholder="Your message here..." value={this.state.messageText} onChange={this._handleInput} required/>
+                  <textarea name="messageText" type="text" rows="5" className="form-control" id="messageText" placeholder="Your message here..." value={this.state.messageText} onChange={this._handleInput} required></textarea>
 
                   <button type="submit" className="btn btn-primary submit-button">Send</button>
                 </form>

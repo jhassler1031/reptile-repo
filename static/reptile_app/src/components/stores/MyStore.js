@@ -6,6 +6,7 @@ import './MyStore.css';
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
 const baseURL = file.baseURL;
+const noImageURL = baseURL + "/media/media/noimagefound.JPG";
 
 // This class is to give a more detailed view of a contributors stores with the options
 // to edit or delete.
@@ -100,13 +101,30 @@ class MyStore extends Component {
 
   render() {
     return (
-      <div className="col-5 myStoreDisplay">
-        <h1>{this.state.store_name}</h1>
+      <div className="col-11 storeDisplay myStoreDisplay">
+        <div className="row no-gutters">
+          <div className="col-12 col-md-6 image-container">
+            {this.props.store.image!=null ? <div className="image-container"><img src={this.props.store.image} alt="Store"/></div> : <img src={noImageURL} alt="Default"/>}
+          </div>
 
-        {/* Button to open modal to edit entry */}
-        <div id="editStore" className="col-12 col-md-4">
-          <button type="button" className="editStoreButton btn" data-toggle="modal" data-target={`#editStoreModal${this.props.store.id}`}>Edit Entry</button>
+          <div className="col-12 col-md-6">
+            <h1>{this.props.store.store_name}</h1>
+            <p>{this.props.store.raw_address} {this.props.store.raw_address2}</p>
+            <p>{this.props.store.city}, {this.props.store.state} {this.props.store.zip_code}</p>
+            {this.props.store.phone!=null ? <p>Phone: {this.props.store.phone}</p> : ''}
+            {this.props.store.website!=null ? <div className="btn website-button"><a href={this.props.store.website} target="_blank">Website</a></div> : ''}
+            {this.props.store.notes!=null ? <p>Notes: {this.props.store.notes}</p> : ''}
+
+            <div className="row justify-content-center">
+              {/* Button to open modal to edit entry */}
+              <button type="button" className="col-3 submit-button btn" data-toggle="modal" data-target={`#editStoreModal${this.props.store.id}`}>Edit Entry</button>
+              {/* Button to delete entry */}
+              <input className="col-3 btn submit-button" type="button" value="Delete Entry" onClick={this.props.deleteStore}/>
+            </div>
+          </div>
         </div>
+
+
 
         {/* Modal to edit entry */}
         <div className="modal" tabIndex="-1" role="dialog" id={`editStoreModal${this.props.store.id}`} data-backdrop="false">
@@ -145,21 +163,17 @@ class MyStore extends Component {
                   <input name="websiteInput" type="text" className="form-control" id={`editStoreWebsiteInput${this.props.store.id}`} placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="notesInput">Notes</label>
-                  <input name="notesInput" type="text" className="form-control" id={`editStoreNotesInput${this.props.store.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput} />
+                  <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editStoreNotesInput${this.props.store.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Button to delete entry */}
-        <input className="btn" type="button" value="Delete Entry" onClick={this.props.deleteStore}/>
-
       </div>
     );
   }
