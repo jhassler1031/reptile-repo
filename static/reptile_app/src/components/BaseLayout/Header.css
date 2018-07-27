@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker");
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important; }
+
 .header {
   height: 100px; }
 
@@ -43,19 +47,6 @@
   color: white;
   padding: 10px 5px; }
 
-#headerLogin .loginButton {
-  font-family: 'Amatic SC', helvetica, sans-serif;
-  font-size: 1.5rem;
-  border: 1px solid white;
-  color: white;
-  background-color: #52739388;
-  border-radius: 2px; }
-
-#headerLogin .loginButton:hover {
-  background-color: #D36B69;
-  text-decoration: none;
-  color: white; }
-
 @media (max-width: 768px) {
   #headerLogin a {
     padding: 5px 10px;
@@ -63,7 +54,7 @@
   .navButton a {
     font-size: 1.2rem; } }
 
-.logoutButton {
+.loginOutButton {
   font-family: 'Amatic SC', helvetica, sans-serif;
   font-size: 1.5rem;
   border: 1px solid white;
@@ -71,7 +62,45 @@
   background-color: #52739388;
   border-radius: 2px; }
 
-.logoutButton:hover {
+.loginOutButton:hover {
   background-color: #D36B69;
   text-decoration: none;
-  color: white; }
+  color: white;
+  border-color: white; }
+
+.modal {
+  background: #271421cc; }
+
+.modal-header {
+  border-bottom: 1px solid #EBD79A; }
+
+.modal-footer {
+  border-top: 1px solid #EBD79A; }
+
+.modal-content {
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  background-color: #527393ef;
+  border: 2px solid #557599;
+  color: #EBD79A; }
+
+.modal-content h1 {
+  font-family: 'Amatic SC';
+  font-size: 2rem; }
+
+.modal-body .form-control {
+  background-color: #FFFEEF; }
+
+.modal-header .close {
+  color: #E9D7A1;
+  opacity: 1;
+  font-size: 2rem;
+  text-shadow: none;
+  line-height: 5px;
+  border-radius: 10px; }
+
+.modal-header .close:hover {
+  color: #292C34 !important; }
+
+.close-button {
+  background-color: #EBD79A;
+  color: #292C34; }

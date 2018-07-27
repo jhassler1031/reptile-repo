@@ -58,22 +58,22 @@ class Header extends Component {
           <h1 className="col-12 col-md-4 header-item header-title">The Reptile Repo</h1>
 
           {this.state.loggedIn ?
-          <div className="col-12 col-md-4 logout">
-            <button type="button" className="logoutButton btn btn-primary"  onClick={this._logout}>Logout</button>
+          <div className="col-12 col-md-4 loginOutContainer header-item">
+            <button type="button" className="loginOutButton btn btn-primary"  onClick={this._logout}>Logout</button>
           </div>
           :
           // Button to bring up login modal
-          <div id="headerLogin" className="col-12 col-md-4 login header-item">
-            <button type="button" className="loginButton btn btn-primary" data-toggle="modal" data-target="#loginModal">Contributor Login</button>
+          <div id="headerLogin" className="col-12 col-md-4 loginOutContainer header-item">
+            <button type="button" className="loginOutButton btn btn-primary" data-toggle="modal" data-target="#loginModal">Contributor Login</button>
           </div>
           }
 
           {/* Login Modal */}
-          <div className="modal" tabIndex="-1" role="dialog" id="loginModal" data-backdrop="false">
+          <div id="loginModal" className="modal" tabIndex="-1" role="dialog" data-backdrop="false">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Contributor Login</h5>
+                  <h1 className="modal-title">Contributor Login</h1>
                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -86,11 +86,11 @@ class Header extends Component {
                     <label htmlFor="passwordInput">Password</label>
                     <input name="password" type="password" className="form-control" id="passwordInput" placeholder="Password" value={this.state.password} onChange={this._handleInput} required/>
 
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary submit-button">Login</button>
                   </form>
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
