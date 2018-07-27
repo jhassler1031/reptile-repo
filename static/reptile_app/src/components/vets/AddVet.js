@@ -13,16 +13,16 @@ class AddVet extends Component {
     this.state = {
       vet_name: '',
       address1: '',
-      address2: undefined,
+      address2: '',
       city: '',
       state: '',
       zip_code: '',
-      phone: undefined,
-      website: undefined,
+      phone: '',
+      website: '',
       emergency_services: false,
       boarding_services: false,
-      notes: undefined,
-      image: undefined,
+      notes: '',
+      image: '',
     }
     this._handleInput = this._handleInput.bind(this);
     this._addVet = this._addVet.bind(this);
@@ -76,20 +76,7 @@ class AddVet extends Component {
     $('#addVetModal').modal('toggle')
     let url = `${baseURL}/vets/`;
     let headerInfo = sessionStorage.getItem("token");
-    // let vetInfo = {
-    //   "vet_name": this.state.vet_name,
-    //   "raw_address": this.state.address1,
-    //   "raw_address2": this.state.address2,
-    //   city: this.state.city,
-    //   state: this.state.state,
-    //   "zip_code": this.state.zip_code,
-    //   phone: this.state.phone,
-    //   website: this.state.website,
-    //   "emergency_services": this.state.emergency_services,
-    //   "boarding_services": this.state.boarding_services,
-    //   notes: this.state.notes,
-    //   image: this.state.image
-    // }
+
     let vetInfo = new FormData();
     vetInfo.append("vet_name", this.state.vet_name);
     vetInfo.append("raw_address", this.state.address1);
@@ -102,16 +89,12 @@ class AddVet extends Component {
     vetInfo.append("emergency_services", this.state.emergency_services);
     vetInfo.append("boarding_services", this.state.boarding_services);
     vetInfo.append("notes", this.state.notes);
-    vetInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
+    vetInfo.append("image", this.state.image);
 
     fetch(url, {
       method: "POST",
-      // body: JSON.stringify(vetInfo),
       body: vetInfo,
       headers: {
-        // 'Content-Type': "application/json",
-        // Accept: 'application/json',
-        // 'Content-Type': "multipart/form-data",
         'Authorization': headerInfo
       }
     })

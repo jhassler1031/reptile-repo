@@ -18,16 +18,16 @@ class MyVet extends Component {
       // On non required fields, doing an if before setting state value to avoid error
       vet_name: this.props.vet.vet_name,
       address1: this.props.vet.raw_address,
-      address2: (this.props.vet.raw_address2 !== null ? this.props.vet.raw_address2 : undefined),
+      address2: (this.props.vet.raw_address2!==null ? this.props.vet.raw_address2 : ''),
       city: this.props.vet.city,
       state: this.props.vet.state,
       zip_code: this.props.vet.zip_code,
-      phone: (this.props.vet.phone!== null ? this.props.vet.phone : undefined),
-      website: (this.props.vet.website !== null ? this.props.vet.website : undefined),
+      phone: (this.props.vet.phone!==null ? this.props.vet.phone : ''),
+      website: (this.props.vet.website!==null ? this.props.vet.website : ''),
       emergency_services: this.props.vet.emergency_services,
       boarding_services: this.props.vet.boarding_services,
-      notes: (this.props.vet.notes !== null ? this.props.vet.notes : undefined),
-      image: undefined
+      notes: (this.props.vet.notes!==null ? this.props.vet.notes : ''),
+      image: (this.props.vet.image !== null ? 'no file' : null)
     }
     this._editVet = this._editVet.bind(this);
     this._handleInput = this._handleInput.bind(this);
@@ -70,7 +70,6 @@ class MyVet extends Component {
     }
     if (event.target.name === "imageInput") {
       let file = event.target.files[0];
-      console.log(file);
       this.setState({image: file});
     }
   }
@@ -93,7 +92,9 @@ class MyVet extends Component {
     vetInfo.append("emergency_services", this.state.emergency_services);
     vetInfo.append("boarding_services", this.state.boarding_services);
     vetInfo.append("notes", this.state.notes);
-    vetInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
+    if (this.state.image !== null && this.state.image !== 'no file') {
+      vetInfo.append("image", this.state.image);
+    }
 
     fetch(url, {
       method: "PUT",
@@ -124,13 +125,13 @@ class MyVet extends Component {
 
           <div className="col-12 col-md-6">
             <h1>{this.props.vet.vet_name}</h1>
-            <p>{this.props.vet.raw_address} {this.props.vet.raw_address2}</p>
+            <p>{this.props.vet.raw_address} {this.props.vet.raw_address2!==undefined ? this.props.vet.raw_address2 : ''}</p>
             <p>{this.props.vet.city}, {this.props.vet.state} {this.props.vet.zip_code}</p>
-            {this.props.vet.phone!=null ? <p>Phone: {this.props.vet.phone}</p> : ''}
-            {this.props.vet.website!=null ? <div className="btn website-button"><a href={this.props.vet.website} target="_blank">Website</a></div> : ''}
+            {this.props.vet.phone !==null ? <p>Phone: {this.props.vet.phone}</p> : ''}
+            {this.props.vet.website!==null ? <div className="btn website-button"><a href={this.props.vet.website} target="_blank">Website</a></div> : ''}
             <p>Emergency Services Available: {this.props.vet.emergency_services ? "Yes" : "No"}</p>
             <p>Boarding Services Available: {this.props.vet.boarding_services ? "Yes" : "No"}</p>
-            {this.props.vet.notes!=null ? <p>Notes: {this.props.vet.notes}</p> : ''}
+            {this.props.vet.notes!==null ? <p>Notes: {this.props.vet.notes}</p> : ''}
 
             <div className="row justify-content-center">
               {/* Button to open modal to edit entry */}
@@ -179,12 +180,12 @@ class MyVet extends Component {
                   <input name="websiteInput" type="text" className="form-control" id={`editVetWebsiteInput${this.props.vet.id}`} placeholder="Website" value={this.state.website} onChange={this._handleInput} />
 
                   <label htmlFor="emergencyInput">Emergency Services Offered?</label>
-                  <input className="check-box" name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
+                  <input id={`editVetEmergencyInput${this.props.vet.id}`} className="check-box" name="emergencyInput" type="checkbox" value="true" checked={this.state.emergency_services} onChange={this._handleInput}/>
 
                   <br/>
 
                   <label htmlFor="boardingInput">Boarding Services Offered?</label>
-                  <input className="check-box" name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
+                  <input id={`editVetBoardingInput${this.props.vet.id}`} className="check-box" name="boardingInput" type="checkbox" value="true" checked={this.state.boarding_services} onChange={this._handleInput}/>
 
                   <br/>
 
@@ -192,7 +193,7 @@ class MyVet extends Component {
                   <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editVetNotesInput${this.props.vet.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
 
                   <label htmlFor="imageInput">Image Upload</label>
-                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
+                  <input id={`editVetImageInput${this.props.vet.id}`} name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>

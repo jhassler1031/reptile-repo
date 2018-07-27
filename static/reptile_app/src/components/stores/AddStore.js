@@ -14,13 +14,13 @@ class AddStore extends Component {
     this.state = {
       store_name: '',
       address1: '',
-      address2: undefined,
+      address2: '',
       city: '',
       state: '',
       zip_code: '',
-      phone: undefined,
-      website: undefined,
-      notes: undefined,
+      phone: '',
+      website: '',
+      notes: '',
       image: undefined
     }
     this._handleInput = this._handleInput.bind(this);
