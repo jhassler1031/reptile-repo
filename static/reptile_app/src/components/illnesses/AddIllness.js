@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
+import './AddIllness.css';
+
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
 const baseURL = file.baseURL;
@@ -97,7 +99,7 @@ class AddIllness extends Component {
                   <label htmlFor="speciesInput">Species Affected</label>
                   <input name="speciesInput" type="text" className="form-control" id="speciesInput" placeholder="Species Affected" value={this.state.species_affected} onChange={this._handleInput} required/>
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">

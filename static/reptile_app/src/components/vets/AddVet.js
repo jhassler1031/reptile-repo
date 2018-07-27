@@ -180,7 +180,7 @@ class AddVet extends Component {
                   <label htmlFor="imageInput">Image Upload</label>
                   <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">

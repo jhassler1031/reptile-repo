@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
+import './AddStore.css';
+
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
 const baseURL = file.baseURL;
@@ -159,7 +161,7 @@ class AddStore extends Component {
                   <label htmlFor="imageInput">Upload Image</label>
                   <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
               </div>
               <div className="modal-footer">

@@ -19,3 +19,7 @@ img {
     background-position: top;
   }
 }
+
+ul {
+  list-style: none;
+}

@@ -71,15 +71,15 @@ class Footer extends Component {
 
   render() {
     return (
-      <div className="messageSection">
-        <h1>Send Us a Message</h1>
+      <div className="message-section">
+        <h1>Contact Us</h1>
         <p>
           If there is any information you feel that we are missing on this site and would like us to
           add, or if you would like to be considered for becoming a contributor, please send us a message.  Thanks
         </p>
 
         <div id="message" className="footer-item">
-          <button type="button" className="messageButton btn btn-primary" data-toggle="modal" data-target="#messageModal">Send us a message</button>
+          <button type="button" className="message-button btn btn-primary" data-toggle="modal" data-target="#messageModal">Send Us a Message</button>
         </div>
 
         <div className="modal" tabIndex="-1" role="dialog" id="messageModal" data-backdrop="false">
@@ -105,11 +105,11 @@ class Footer extends Component {
                   <label htmlFor="messageText">Message</label>
                   <input name="messageText" type="text" className="form-control" id="messageText" placeholder="Your message here..." value={this.state.messageText} onChange={this._handleInput} required/>
 
-                  <button type="submit" className="btn btn-primary">Send</button>
+                  <button type="submit" className="btn btn-primary submit-button">Send</button>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary close-button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
