@@ -15,7 +15,7 @@ class MyVet extends Component {
     super(props);
 
     this.state = {
-      // On none required fields, doing an if before setting state value to avoid error
+      // On non required fields, doing an if before setting state value to avoid error
       vet_name: this.props.vet.vet_name,
       address1: this.props.vet.raw_address,
       address2: (this.props.vet.raw_address2 !== null ? this.props.vet.raw_address2 : undefined),
@@ -80,20 +80,7 @@ class MyVet extends Component {
     $(`#editVetModal${this.props.vet.id}`).modal('toggle')
     let url = `${baseURL}/vets/${this.props.vet.id}`;
     let headerInfo = sessionStorage.getItem("token");
-    // let vetInfo = {
-    //   "vet_name": this.state.vet_name,
-    //   "raw_address": this.state.address1,
-    //   "raw_address2": this.state.address2,
-    //   city: this.state.city,
-    //   state: this.state.state,
-    //   "zip_code": this.state.zip_code,
-    //   phone: this.state.phone,
-    //   website: this.state.website,
-    //   "emergency_services": this.state.emergency_services,
-    //   "boarding_services": this.state.boarding_services,
-    //   notes: this.state.notes,
-    //   image: this.state.image
-    // }
+
     let vetInfo = new FormData();
     vetInfo.append("vet_name", this.state.vet_name);
     vetInfo.append("raw_address", this.state.address1);
@@ -112,7 +99,6 @@ class MyVet extends Component {
       method: "PUT",
       body: vetInfo,
       headers: {
-        // 'Content-Type': "application/json",
         'Authorization': headerInfo
       }
     })
@@ -204,6 +190,9 @@ class MyVet extends Component {
 
                   <label htmlFor="notesInput">Notes</label>
                   <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editVetNotesInput${this.props.vet.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
+
+                  <label htmlFor="imageInput">Image Upload</label>
+                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>

@@ -60,6 +60,10 @@ class MyStore extends Component {
     if (event.target.name === "notesInput") {
       this.setState({notes: content});
     }
+    if (event.target.name === "imageInput") {
+      let file = event.target.files[0];
+      this.setState({"image": file});
+    }
   }
 
   _editStore(event) {
@@ -67,24 +71,23 @@ class MyStore extends Component {
     $(`#editStoreModal${this.props.store.id}`).modal('toggle')
     let url = `${baseURL}/stores/${this.props.store.id}`;
     let headerInfo = sessionStorage.getItem("token");
-    let storeInfo = {
-      "store_name": this.state.store_name,
-      "raw_address": this.state.address1,
-      "raw_address2": this.state.address2,
-      city: this.state.city,
-      state: this.state.state,
-      "zip_code": this.state.zip_code,
-      phone: this.state.phone,
-      website: this.state.website,
-      notes: this.state.notes,
-      image: this.state.image
-    }
+
+    let storeInfo = new FormData();
+    storeInfo.append("store_name", this.state.store_name);
+    storeInfo.append("raw_address", this.state.address1);
+    storeInfo.append("raw_address2", this.state.address2);
+    storeInfo.append("city", this.state.city);
+    storeInfo.append("state", this.state.state);
+    storeInfo.append("zip_code", this.state.zip_code);
+    storeInfo.append("phone", this.state.phone);
+    storeInfo.append("website", this.state.website);
+    storeInfo.append("notes", this.state.notes);
+    storeInfo.append("image", (this.state.image !== undefined ? this.state.image : ''));
 
     fetch(url, {
       method: "PUT",
-      body: JSON.stringify(storeInfo),
+      body: storeInfo,
       headers: {
-        'Content-Type': "application/json",
         'Authorization': headerInfo
       }
     })
@@ -164,6 +167,9 @@ class MyStore extends Component {
 
                   <label htmlFor="notesInput">Notes</label>
                   <textarea name="notesInput" type="text" rows="5" className="form-control" id={`editStoreNotesInput${this.props.store.id}`} placeholder="Notes" value={this.state.notes} onChange={this._handleInput}></textarea>
+
+                  <label htmlFor="imageInput">Upload Image</label>
+                  <input name="imageInput" type="file" className="form-control" id="imageInput" onChange={this._handleInput} />
 
                   <button type="submit" className="btn btn-primary submit-button">Submit</button>
                 </form>
