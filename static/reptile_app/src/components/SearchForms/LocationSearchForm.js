@@ -62,7 +62,6 @@ class LocationSearchForm extends Component {
       return response.json();
     })
     .then(responseAsJson => {
-      console.log(responseAsJson);
       self.setState({latLong: responseAsJson["results"][0]["geometry"]["location"]});
       // Call the callback function after the fetch completes.
       callback();

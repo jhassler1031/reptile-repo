@@ -28,7 +28,6 @@ class Illnesses extends Component {
   _search(searchParams) {
     let self = this;
     let searchURL = `${baseURL}/illnesses/?search=${searchParams}`;
-    console.log(searchURL);
 
     fetch(searchURL)
     .then(response => {
@@ -39,7 +38,6 @@ class Illnesses extends Component {
     })
     .then(responseAsJson => {
       if (responseAsJson.length > 0) {
-        console.log(responseAsJson);
         self.setState({searchResults: responseAsJson, message: ''});
       }
       else {
@@ -81,7 +79,7 @@ class Illnesses extends Component {
 
         <div className="searchResults row justify-content-center">
           {/* If statement here to display either no search results message, or the search results */}
-          {this.state.searchResults.length > 0 ? $illnesses : this.state.message}
+          {this.state.searchResults.length > 0 ? $illnesses : <p className="no-results">{this.state.message}</p>}
         </div>
 
         {this.state.authenticated !== false ?

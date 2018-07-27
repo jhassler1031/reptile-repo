@@ -19,3 +19,7 @@ img {
     background-position: top;
   }
 }
+
+.no-results {
+  color: white;
+}

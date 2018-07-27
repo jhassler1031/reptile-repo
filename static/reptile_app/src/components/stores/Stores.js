@@ -125,7 +125,7 @@ class Stores extends Component {
 
         <div className="searchResults row justify-content-center">
           {/* If statement here to display either no search results message, or the search results */}
-          {this.state.searchResults.length > 0 ? $stores : this.state.message}
+          {this.state.searchResults.length > 0 ? $stores : <p className="no-results">{this.state.message}</p>}
         </div>
 
         {this.state.authenticated !== false ?
