@@ -25,6 +25,7 @@ class BaseLayout extends Component {
       username: username,
       password: password
     }
+    console.log("login url: ", loginURL);
 
     fetch(loginURL, {
       method: "POST",

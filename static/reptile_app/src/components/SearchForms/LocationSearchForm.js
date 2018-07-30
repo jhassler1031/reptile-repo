@@ -5,10 +5,7 @@ import './LocationSearchForm.css';
 // Import the utlitity file and set geoCodeURL
 import file from '../../utility.js';
 const geoCodeURL = file.geoCodeURL;
-
-let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
-// let latLong;
-// const GOOGLE_API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`;
+const GOOGLE_API_KEY = file.GOOGLE_API_KEY;
 
 class LocationSearchForm extends Component {
   constructor(props) {
