@@ -11,9 +11,7 @@ import './Vets.css';
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
 const baseURL = file.baseURL;
-
-let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
-
+const GOOGLE_API_KEY = file.GOOGLE_API_KEY;
 
 class Vets extends Component {
   constructor(props) {
@@ -64,7 +62,7 @@ class Vets extends Component {
     let self = this;
     // State here needs latLong to display the map
     self.setState({latLong: latLong});
-    let searchURL = `${baseURL}/vets/?data=${searchParams}`;
+    let searchURL = `${baseURL}/api-vets/?data=${searchParams}`;
 
     fetch(searchURL)
     .then(response => {

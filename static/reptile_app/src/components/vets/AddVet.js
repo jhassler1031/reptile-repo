@@ -73,7 +73,7 @@ class AddVet extends Component {
   _addVet(event) {
     event.preventDefault();
     $('#addVetModal').modal('toggle')
-    let url = `${baseURL}/vets/`;
+    let url = `${baseURL}/api-vets/`;
     let headerInfo = sessionStorage.getItem("token");
 
     let vetInfo = new FormData();

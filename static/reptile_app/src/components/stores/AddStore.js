@@ -66,7 +66,7 @@ class AddStore extends Component {
   _addStore(event) {
     event.preventDefault();
     $('#addStoreModal').modal('toggle')
-    let url = `${baseURL}/stores/`;
+    let url = `${baseURL}/api-stores/`;
     let headerInfo = sessionStorage.getItem("token");
 
     let storeInfo = new FormData();

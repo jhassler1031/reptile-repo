@@ -43,7 +43,7 @@ class MyIllness extends Component {
   _editIllness(event) {
     event.preventDefault();
     $(`#editIllnessModal${this.props.illness.id}`).modal('toggle')
-    let url = `${baseURL}/illnesses/${this.props.illness.id}`;
+    let url = `${baseURL}/api-illnesses/${this.props.illness.id}`;
     let headerInfo = sessionStorage.getItem("token");
     let illnessInfo = {
       "illness_name": this.state.illness_name,

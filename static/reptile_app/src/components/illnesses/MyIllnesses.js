@@ -17,7 +17,7 @@ class MyIllnesses extends Component {
   }
 
   componentDidMount() {
-    let url = `${baseURL}/myillnesses/`;
+    let url = `${baseURL}/api-myillnesses/`;
     let headerInfo = sessionStorage.getItem("token");
 
     fetch(url, {
@@ -42,7 +42,7 @@ class MyIllnesses extends Component {
   }
 
   _deleteIllness(illness) {
-    let url = `${baseURL}/illnesses/${illness.id}`;
+    let url = `${baseURL}/api-illnesses/${illness.id}`;
     let headerInfo = sessionStorage.getItem("token");
     let illnesses = this.state.results;
 

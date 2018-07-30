@@ -11,8 +11,7 @@ import './Stores.css';
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
 const baseURL = file.baseURL;
-
-let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
+const GOOGLE_API_KEY = file.GOOGLE_API_KEY;
 
 class Stores extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ class Stores extends Component {
     let self = this;
     // State here needs latLong to display the map
     self.setState({latLong: latLong});
-    let searchURL = `${baseURL}/stores/?data=${searchParams}`;
+    let searchURL = `${baseURL}/api-stores/?data=${searchParams}`;
 
     fetch(searchURL)
     .then(response => {

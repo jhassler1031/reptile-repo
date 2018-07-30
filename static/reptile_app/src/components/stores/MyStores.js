@@ -17,7 +17,7 @@ class MyStores extends Component {
   }
 
   componentDidMount() {
-    let url = `${baseURL}/mystores/`;
+    let url = `${baseURL}/api-mystores/`;
     let headerInfo = sessionStorage.getItem("token");
 
     fetch(url, {
@@ -43,7 +43,7 @@ class MyStores extends Component {
   }
 
   _deleteStore(store) {
-    let url = `${baseURL}/stores/${store.id}`;
+    let url = `${baseURL}/api-stores/${store.id}`;
     let headerInfo = sessionStorage.getItem("token");
     let stores = this.state.results;
 

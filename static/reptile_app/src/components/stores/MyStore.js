@@ -69,7 +69,7 @@ class MyStore extends Component {
   _editStore(event) {
     event.preventDefault();
     $(`#editStoreModal${this.props.store.id}`).modal('toggle')
-    let url = `${baseURL}/stores/${this.props.store.id}`;
+    let url = `${baseURL}/api-stores/${this.props.store.id}`;
     let headerInfo = sessionStorage.getItem("token");
 
     let storeInfo = new FormData();

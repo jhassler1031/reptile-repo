@@ -27,7 +27,7 @@ class Illnesses extends Component {
   // and then sets state to the data returned by the felch
   _search(searchParams) {
     let self = this;
-    let searchURL = `${baseURL}/illnesses/?search=${searchParams}`;
+    let searchURL = `${baseURL}/api-illnesses/?search=${searchParams}`;
 
     fetch(searchURL)
     .then(response => {

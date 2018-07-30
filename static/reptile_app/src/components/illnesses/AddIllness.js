@@ -41,7 +41,7 @@ class AddIllness extends Component {
   _addIllness(event) {
     event.preventDefault();
     $('#addIllnessModal').modal('toggle')
-    let url = `${baseURL}/illnesses/`;
+    let url = `${baseURL}/api-illnesses/`;
     let headerInfo = sessionStorage.getItem("token");
     let illnessInfo = {
       "illness_name": this.state.illness_name,

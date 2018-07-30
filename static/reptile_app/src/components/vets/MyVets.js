@@ -17,7 +17,7 @@ class MyVets extends Component {
   }
 
   componentDidMount() {
-    let url = `${baseURL}/myvets/`;
+    let url = `${baseURL}/api-myvets/`;
     let headerInfo = sessionStorage.getItem("token");
 
     fetch(url, {
@@ -43,7 +43,7 @@ class MyVets extends Component {
   }
 
   _deleteVet(vet) {
-    let url = `${baseURL}/vets/${vet.id}`;
+    let url = `${baseURL}/api-vets/${vet.id}`;
     let headerInfo = sessionStorage.getItem("token");
     let vets = this.state.results;
 

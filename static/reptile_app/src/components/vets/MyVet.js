@@ -77,7 +77,7 @@ class MyVet extends Component {
   _editVet(event) {
     event.preventDefault();
     $(`#editVetModal${this.props.vet.id}`).modal('toggle')
-    let url = `${baseURL}/vets/${this.props.vet.id}`;
+    let url = `${baseURL}/api-vets/${this.props.vet.id}`;
     let headerInfo = sessionStorage.getItem("token");
 
     let vetInfo = new FormData();
