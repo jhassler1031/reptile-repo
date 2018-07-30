@@ -104,11 +104,10 @@ class MyVet extends Component {
       }
     })
     .then(response=>{
-      console.log("response: ", response);
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      return response.json();
+      // return response.json();
     })
     .catch((error)=>{
       console.log("There was a problem: \n", error);
@@ -124,14 +123,14 @@ class MyVet extends Component {
           </div>
 
           <div className="col-12 col-md-6">
-            <h1>{this.props.vet.vet_name}</h1>
-            <p>{this.props.vet.raw_address} {this.props.vet.raw_address2!==null ? this.props.vet.raw_address2 : ''}</p>
-            <p>{this.props.vet.city}, {this.props.vet.state} {this.props.vet.zip_code}</p>
-            {this.props.vet.phone !==null ? <p>Phone: {this.props.vet.phone}</p> : ''}
-            {this.props.vet.website!==null ? <div className="btn website-button"><a href={this.props.vet.website} target="_blank">Website</a></div> : ''}
-            <p>Emergency Services Available: {this.props.vet.emergency_services ? "Yes" : "No"}</p>
-            <p>Boarding Services Available: {this.props.vet.boarding_services ? "Yes" : "No"}</p>
-            {this.props.vet.notes!==null ? <p>Notes: {this.props.vet.notes}</p> : ''}
+            <h1>{this.state.vet_name}</h1>
+            <p>{this.state.address1} {this.state.address2!=='' ? this.state.address2 : ''}</p>
+            <p>{this.state.city}, {this.state.state} {this.state.zip_code}</p>
+            {this.state.phone !=='' ? <p>Phone: {this.state.phone}</p> : ''}
+            {this.state.website!=='' ? <div className="btn website-button"><a href={this.state.website} target="_blank">Website</a></div> : ''}
+            <p>Emergency Services Available: {this.state.emergency_services ? "Yes" : "No"}</p>
+            <p>Boarding Services Available: {this.state.boarding_services ? "Yes" : "No"}</p>
+            {this.state.notes!=='' ? <p>Notes: {this.state.notes}</p> : ''}
 
             <div className="row justify-content-center">
               {/* Button to open modal to edit entry */}

@@ -14,6 +14,7 @@ class MyVets extends Component {
     }
 
     this._deleteVet = this._deleteVet.bind(this);
+    // this._editVet = this._editVet.bind(this);
   }
 
   componentDidMount() {
@@ -67,11 +68,20 @@ class MyVets extends Component {
     this.setState({results:vets});
   }
 
+  // _editVet(vet, newVet) {
+  //   let vets = this.state.results;
+  //   console.log("incoming vet: ", newVet);
+  //   console.log("before change: ", vets[vets.indexOf(vet)]);
+  //   vets[vets.indexOf(vet)] = vet;
+  //   console.log("after change: ", vets[vets.indexOf(vet)]);
+  //   this.setState({results:vets});
+  // }
+
   render() {
     let self = this;
     let $myVets = this.state.results.map((vet)=> {
       return (
-        <MyVet key={vet.id} vet={vet} deleteVet={()=>{this._deleteVet(vet)}}/>
+        <MyVet key={vet.id} vet={vet} deleteVet={()=>{this._deleteVet(vet)}} />
       )
     })
     return (

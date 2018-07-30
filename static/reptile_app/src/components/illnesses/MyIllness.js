@@ -73,12 +73,12 @@ class MyIllness extends Component {
   render() {
     return (
       <div className="col-11 illnessDisplay myIllnessDisplay">
-        <h1>{this.props.illness.illness_name}</h1>
+        <h1>{this.state.illness_name}</h1>
         <div className="row justify-content-center">
           <div className="col-6 illness-content">
-            <p>Symptoms: {this.props.illness.symptoms}</p>
-            <p>Species Affected: {this.props.illness.species_affected}</p>
-            <p>{this.props.illness.description}</p>
+            <p>Symptoms: {this.state.symptoms}</p>
+            <p>Species Affected: {this.state.species_affected}</p>
+            <p>{this.state.description}</p>
           </div>
 
           <div className="col-6">
