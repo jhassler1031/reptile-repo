@@ -9,9 +9,9 @@ const loginURL = "http://localhost:8000/auth/token/create/";
 const logoutURL = "http://localhost:8000/auth/token/destroy/";
 // const logoutURL = "https://salty-earth-93578.herokuapp.com/auth/token/destroy/"
 
-const GOOGLE_API_KEY = "AIzaSyCoHbaK0VRre44HiamkKE6I9HU09pV-Cto";
+// const GOOGLE_API_KEY = "AIzaSyCoHbaK0VRre44HiamkKE6I9HU09pV-Cto";
 // Google API Key locked down by Heroku URL
-// let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
+let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
 // Google API key from localStorage - not locked down - for development only
 
 

@@ -46,8 +46,16 @@ INSTALLED_APPS = [
     'djoser',
     'django_filters',
     'corsheaders',
-    # 'invitations',
+    'django.contrib.sites',
+    'invitations',
 ]
+
+SITE_ID = 1
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# SIGNUP_REDIRECT = "/signup"
+INVITATIONS_SIGNUP_REDIRECT = "/signup"
 
 MIDDLEWARE = [
     # For django-cors-headers

@@ -16,6 +16,7 @@ import Illnesses from './components/illnesses/Illnesses.js';
 import MyVets from './components/vets/MyVets.js';
 import MyStores from './components/stores/MyStores.js';
 import MyIllnesses from './components/illnesses/MyIllnesses.js';
+import Signup from './components/signup/Signup.js';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -27,6 +28,7 @@ ReactDOM.render(
         <Route path='/stores' component={Stores}/>
         <Route path='/myillnesses' component={MyIllnesses}/>
         <Route path='/illnesses' component={Illnesses}/>
+        <Route path='/signup' component={Signup}/>
         <Route path='/' component={App}/>
       </Switch>
     </BaseLayout>

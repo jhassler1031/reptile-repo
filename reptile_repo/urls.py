@@ -40,7 +40,7 @@ urlpatterns = [
     path('api-myillnesses/', MyIllnessListAPIView.as_view(), name='myillness-list'),
     path('messages/', MessageListCreateAPIView.as_view(), name='message-list'),
     path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view(), name='message-detail'),
-    # path('invitations/', include('invitations.urls', namespace='invitations')),
+    path('invitations/', include('invitations.urls', namespace='invitations')),
     #Following re_path is a catchall allowing page refreshes
     re_path(r'^(?P<path>.*)/$', IndexView.as_view()),
 ]
