@@ -78,8 +78,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_USE_SESSIONS = False
-CSRF_HEADER_NAME = 'X-CSRFToken'
+# CSRF_USE_SESSIONS = False
+# CSRF_HEADER_NAME = 'X-CSRFToken'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
