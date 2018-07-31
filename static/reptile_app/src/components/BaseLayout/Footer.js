@@ -57,7 +57,7 @@ class Footer extends Component {
       method: "POST",
       body: JSON.stringify(content),
       credentials: "include",
-      // mode: "same-origin",
+      mode: "same-origin",
       headers: {
         'Content-Type': "application/json",
         // 'X-CSRFToken': csrftoken
