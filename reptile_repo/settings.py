@@ -52,7 +52,10 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+# Default Django setup - prints invitation URL to the terminal
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Gmail SMTP setup
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True

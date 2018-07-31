@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Permanent+Marker');
+
+.signup {
+  background-color: #779AB7cc;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid #557599;
+}
+
+@media (max-width: 768px) {
+  .signup {
+    margin-top: 125px;
+  }
+}
+
+.signup h1 {
+  font-family: "Amatic SC", helvetica, sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.signup label, input, .submit-button {
+  font-family: "Josefin Sans", helvetica, sans-serif;
+  color: white;
+}

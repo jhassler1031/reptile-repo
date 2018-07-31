@@ -84,10 +84,10 @@ class MyIllness extends Component {
           <div className="col-6">
             <div className="row justify-content-center">
               {/* Button to open modal to edit entry */}
-              <button type="button" className="col-3 submit-button btn" data-toggle="modal" data-target={`#editIllnessModal${this.props.illness.id}`}>Edit Entry</button>
+              <button type="button" className="col-8 col-md-3 submit-button btn" data-toggle="modal" data-target={`#editIllnessModal${this.props.illness.id}`}>Edit Entry</button>
 
               {/* Button to delete entry */}
-              <input className="col-3 btn submit-button" type="button" value="Delete Entry" onClick={this.props.deleteIllness}/>
+              <input className="col-8 col-md-3 btn submit-button" type="button" value="Delete Entry" onClick={this.props.deleteIllness}/>
             </div>
           </div>
         </div>

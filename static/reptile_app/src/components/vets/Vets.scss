@@ -6,7 +6,7 @@
 
 @media (max-width: 768px) {
   .vetsContainer {
-    top: 240px;
+    margin-top: 125px;
   }
 }
 
@@ -36,13 +36,11 @@
 
 .title-headline {
   font-weight: bold;
-  white-space: nowrap;
 }
 
 .vets-title-text {
   text-align: center;
   font-family: "Josefin Sans", helvetica, sans-serif;
-  white-space: nowrap;
 }
 
 #map {

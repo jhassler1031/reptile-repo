@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MyStore from './MyStore.js';
+import './MyStores.css';
 
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
@@ -75,7 +76,7 @@ class MyStores extends Component {
       )
     })
     return (
-      <div className="row justify-content-center no-gutters">
+      <div className="row justify-content-center no-gutters storesDisplay">
         {$myStores}
       </div>
     );

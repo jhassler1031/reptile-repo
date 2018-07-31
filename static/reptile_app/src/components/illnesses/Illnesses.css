@@ -4,7 +4,7 @@
 
 @media (max-width: 768px) {
   .illnessContainer {
-    top: 240px; } }
+    margin-top: 125px; } }
 
 .illnesses-title {
   font-family: "Josefin Sans", helvetica, sans-serif;
@@ -24,8 +24,7 @@
     font-size: 1.5rem; } }
 
 .title-headline {
-  font-weight: bold;
-  white-space: nowrap; }
+  font-weight: bold; }
 
 .illnesses-title-text {
   text-align: center;

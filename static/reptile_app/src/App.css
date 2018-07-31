@@ -4,6 +4,7 @@ body {
   box-sizing: border-box;
   background: url("./components/Images/crombackground2.JPG") no-repeat fixed;
   background-position: center top;
+  background-size: cover;
 }
 
 img {
@@ -17,6 +18,7 @@ img {
 @media (max-width: 768px) {
   body {
     background-position: top;
+    background-size: initial;
   }
 }
 

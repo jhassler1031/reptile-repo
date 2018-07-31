@@ -7,7 +7,8 @@
   height: 100px; }
 
 .headerRow {
-  background-image: url(../Images/crombackground2.JPG);
+  background: url(../Images/crombackground2.JPG) no-repeat fixed;
+  background-size: cover;
   width: 100%;
   position: fixed;
   top: 0;
@@ -18,7 +19,8 @@
   .headerRow {
     height: 220px;
     padding-bottom: 20px;
-    background-position: top; } }
+    background-position: top;
+    background-size: initial; } }
 
 .header-item {
   text-align: center; }

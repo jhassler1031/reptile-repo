@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MyVet from './MyVet.js';
+import './MyVets.css';
 
 // Import the utlitity file and set baseURL to the data
 import file from '../../utility.js';
@@ -85,7 +86,7 @@ class MyVets extends Component {
       )
     })
     return (
-      <div className="row justify-content-center no-gutters">
+      <div className="row justify-content-center no-gutters vetsDisplay">
         {$myVets}
       </div>
     );

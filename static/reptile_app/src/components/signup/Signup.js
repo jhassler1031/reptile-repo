@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Signup.css';
+
 // Import the utlitity file and set base URL
 import file from '../../utility.js';
 const baseURL = file.baseURL;
@@ -60,9 +62,9 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="row justify-content-center">
-        <h1 className="col-12 signup-headline">Welcome!  Please fill out to create your contributor user account.</h1>
-        <form onSubmit={this._userSignUp} className="loginForm">
+      <div className="row justify-content-center signup">
+        <h1 className="col-12 signup-headline">Welcome!  Please fill out to create your contributor user account</h1>
+        <form onSubmit={this._userSignUp} className="loginForm col-12 col-sm-10 col-md-8 col-xl-6">
           <label htmlFor="emailInput">Email</label>
           <input name="email" type="text" className="form-control" id="emailInput" placeholder="Email" value={this.state.email} onChange={this._handleInput} />
 
@@ -72,7 +74,9 @@ class Signup extends Component {
           <label htmlFor="passwordInput">Password</label>
           <input name="password" type="password" className="form-control" id="passwordInput" placeholder="Password" value={this.state.password} onChange={this._handleInput} required/>
 
-          <button type="submit" className="btn btn-primary submit-button">Create User Account</button>
+          <div className="row justify-content-center">
+            <button type="submit" className="col-8 col-sm-6 col-md-4 btn btn-primary submit-button">Create User Account</button>
+          </div>
         </form>
       </div>
     );

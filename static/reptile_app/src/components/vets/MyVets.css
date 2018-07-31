@@ -1,0 +1,6 @@
+.vetsDisplay {
+  margin-top: 25px; }
+
+@media (max-width: 768px) {
+  .vetsDisplay {
+    margin-top: 125px; } }

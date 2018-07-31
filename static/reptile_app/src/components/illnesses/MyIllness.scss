@@ -1,3 +1,9 @@
 .myIllnessDisplay .illness-content {
   padding-left: 25px;
 }
+
+@media (max-width: 768px) {
+  .myIllnessDisplay {
+    margin-top: 125px;
+  }
+}
