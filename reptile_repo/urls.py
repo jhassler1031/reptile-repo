@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-# from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 from reptile_app.views import IndexView, VetListCreateAPIView, VetRetrieveUpdateDestroyAPIView, \
                             StoreListCreateAPIView, StoreRetrieveUpdateDestroyAPIView, \
@@ -39,7 +39,7 @@ urlpatterns = [
     path('api-illnesses/', IllnessListCreateAPIView.as_view(), name='illness-list'),
     path('api-illnesses/<int:pk>', IllnessRetrieveUpdateDestroyAPIView.as_view(), name='illness-detail'),
     path('api-myillnesses/', MyIllnessListAPIView.as_view(), name='myillness-list'),
-    path('messages/', MessageListCreateAPIView.as_view(), name='message-list'),
+    path('messages/', csrf_exempt(MessageListCreateAPIView.as_view()), name='message-list'),
     path('messages/<int:pk>', MessageRetrieveUpdateDestroyAPIView.as_view(), name='message-detail'),
     path('invitations/', include('invitations.urls', namespace='invitations')),
     #Following re_path is a catchall allowing page refreshes
