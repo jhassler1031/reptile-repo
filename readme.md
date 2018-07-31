@@ -26,6 +26,7 @@ django-filter
 django-cors-headers
 model_mommy
 coverage
+django-invitations
 
 APIs Used:
 Google Maps Javascript API

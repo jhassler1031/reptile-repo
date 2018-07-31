@@ -78,6 +78,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_USE_SESSIONS = False 
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'reptile_repo.urls'
