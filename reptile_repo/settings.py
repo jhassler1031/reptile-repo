@@ -52,7 +52,13 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "reptile.repo@gmail.com"
+EMAIL_HOST_PASSWORD = "R3pt1l3R3p0!"
 
 # SIGNUP_REDIRECT = "/signup"
 INVITATIONS_SIGNUP_REDIRECT = "/signup"
