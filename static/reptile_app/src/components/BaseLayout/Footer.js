@@ -58,8 +58,7 @@ class Footer extends Component {
       body: JSON.stringify(content),
       headers: {
         'Content-Type': "application/json",
-        // 'X-CSRFToken': csrftoken
-        'HTTP_X_CSRFTOKEN': csrftoken
+        'X-CSRFToken': csrftoken
       },
     })
     .then(response=>{
