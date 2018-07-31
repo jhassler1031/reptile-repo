@@ -60,7 +60,7 @@ class Footer extends Component {
       mode: "same-origin",
       headers: {
         'Content-Type': "application/json",
-        'X-CSRFToken': csrftoken
+        // 'X-CSRFToken': csrftoken
       },
     })
     .then(response=>{
