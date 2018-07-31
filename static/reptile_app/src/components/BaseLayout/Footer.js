@@ -56,7 +56,7 @@ class Footer extends Component {
     fetch(url, {
       method: "POST",
       body: JSON.stringify(content),
-      // credentials: "include",
+      credentials: "same-origin",
       // mode: "same-origin",
       headers: {
         'Content-Type': "application/json",
