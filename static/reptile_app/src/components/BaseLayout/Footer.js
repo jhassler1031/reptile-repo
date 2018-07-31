@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import getCookie from '../../GetCookie.js';
 
 import './Footer.css';
 
@@ -43,6 +44,8 @@ class Footer extends Component {
     // Need to post to messages database
     $('#messageModal').modal('toggle')
     let url = `${baseURL}/messages/`;
+    let csrftoken = getCookie('csrftoken');
+    console.log("csrf:", csrftoken);
     let content = {
       contact_name: this.state.contactName,
       contact_email: this.state.contactEmail,
@@ -55,7 +58,7 @@ class Footer extends Component {
       body: JSON.stringify(content),
       headers: {
         'Content-Type': "application/json",
-        // 'Authorization': headerInfo
+        'X-CSRFToken': csrftoken
       }
     })
     .then(response=>{

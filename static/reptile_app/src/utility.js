@@ -15,4 +15,5 @@ const GOOGLE_API_KEY = "AIzaSyCoHbaK0VRre44HiamkKE6I9HU09pV-Cto";
 // let GOOGLE_API_KEY = localStorage.getItem("GOOGLE_API_KEY");
 
 
-module.exports = {baseURL: baseURL, geoCodeURL: geoCodeURL, loginURL: loginURL, logoutURL: logoutURL, GOOGLE_API_KEY: GOOGLE_API_KEY};
+module.exports = {baseURL: baseURL, geoCodeURL: geoCodeURL, loginURL: loginURL, logoutURL: logoutURL,
+  GOOGLE_API_KEY: GOOGLE_API_KEY};
