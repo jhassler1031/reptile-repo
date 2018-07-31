@@ -1,4 +1,4 @@
-const baseURL = "https://salty-earth-93578.herokuapp.com/";
+const baseURL = "https://salty-earth-93578.herokuapp.com";
 // const baseURL = "http://localhost:8000";
 
 const geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json";
