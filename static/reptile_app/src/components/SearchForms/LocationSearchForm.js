@@ -59,6 +59,7 @@ class LocationSearchForm extends Component {
       return response.json();
     })
     .then(responseAsJson => {
+      console.log("data from google: ", responseAsJson);
       self.setState({latLong: responseAsJson["results"][0]["geometry"]["location"]});
       // Call the callback function after the fetch completes.
       callback();
@@ -80,6 +81,7 @@ class LocationSearchForm extends Component {
       }
     }
     console.log("api key", GOOGLE_API_KEY);
+    console.log("content: ", content);
 
     self._getLatLong(content, callback)
 
